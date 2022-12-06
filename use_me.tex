@@ -17,7 +17,10 @@
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows, automata, positioning, positioning, fit, calc, overlay-beamer-styles}
+\tikzstyle{squarednode} = [rectangle, draw=black, minimum size=5mm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
 \tikzset{
+	node distance = 5mm,
 	invisible/.style={opacity=0},
 	visible on/.style={alt={#1{}{invisible}}},
 	alt/.code args={<#1>#2#3}{%
