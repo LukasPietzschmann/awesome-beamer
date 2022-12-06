@@ -1,0 +1,90 @@
+\usepackage{hyperref}
+
+\usepackage{chngcntr}
+
+\usepackage{scrextend}
+
+\usepackage{listings}
+
+\lstdefinestyle{animateblocks}{
+	basicstyle=\color{black!20},
+	moredelim=**[is][\only<+>{\color{black}}]{@}{@},
+}
+
+\lstset{
+	escapeinside={<!}{!>},
+}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, automata, positioning, positioning, fit, calc, overlay-beamer-styles}
+\tikzset{
+	invisible/.style={opacity=0},
+	visible on/.style={alt={#1{}{invisible}}},
+	alt/.code args={<#1>#2#3}{%
+		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+	},
+}
+
+\usepackage[ngerman]{babel}
+\usepackage[
+	backend=biber,
+	style=alphabetic,
+	sorting=ynt
+]{biblatex}
+\usepackage{csquotes}
+
+\nocite{*}
+
+\newcommand{\metadata}{
+	\hypersetup{
+		pdftitle = {\mytitle},
+		pdfauthor = {\student},
+		pdfsubject = {\mytitle}
+	}
+}
+
+\makeatletter
+\def\beamer@calltheme#1#2#3{
+	\def\beamer@themelist{#2}
+	\@for\beamer@themename:=\beamer@themelist\do
+		{\usepackage[{#1}]{\beamer@themelocation/#3\beamer@themename}}}
+	\def\usefolder#1{
+	\def\beamer@themelocation{#1}
+}
+
+\def\beamer@themelocation{}
+
+\usefolder{styles}
+\usetheme{Awesome}
+
+\newcounter{pagenumber}
+\BeforeBeginEnvironment{frame}{
+	\stepcounter{pagenumber}
+}
+
+\counterwithin{framenumber}{subsection}
+\pretocmd{\section}{
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\arabic{framenumber}}}
+}{}{}
+\pretocmd{\subsection}{
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\arabic{framenumber}}}
+}{}{}
+\AtEndDocument{
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\arabic{framenumber}}}
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\arabic{framenumber}}}
+}
+\newcommand{\framespersection}{
+	\ifcsdef{s@totalsectionframes-\arabic{section}}{
+		\csname s@totalsectionframes-\arabic{section}\endcsname
+	}{
+		0
+	}
+}
+\newcommand{\framespersubsection}{
+	\ifcsdef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{
+		\csname s@totalsubsectionframes-\arabic{section}-\arabic{subsection}\endcsname
+	}{
+		0
+	}
+}
+\makeatother
