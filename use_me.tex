@@ -24,9 +24,11 @@
 }
 
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows, automata, positioning, positioning, fit, calc, overlay-beamer-styles}
+\tikzstyle{every picture}+=[remember picture]
+\usetikzlibrary{shapes.geometric, arrows, arrows.meta, shapes, automata, positioning, positioning, fit, calc, overlay-beamer-styles}
 \tikzstyle{squarednode} = [rectangle, draw=black, minimum size=5mm]
 \tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{textarrow} = [awesomegray,thick,->,-{Kite[open]}]
 \tikzset{
 	node distance = 5mm,
 	invisible/.style={opacity=0},
