@@ -8,6 +8,10 @@
 
 \usepackage{listings}
 
+\usepackage{contour}
+
+\usepackage{ulem}
+
 \usepackage{underscore}
 
 \lstdefinestyle{animateblocks}{
@@ -48,6 +52,13 @@
 		pdfauthor = {\student},
 		pdfsubject = {\mytitle}
 	}
+}
+
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+\newcommand{\gul}[1]{%
+	\uline{\phantom{#1}}%
+	\llap{\contour{white}{#1}}%
 }
 
 \makeatletter
