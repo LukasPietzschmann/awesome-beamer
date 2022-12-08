@@ -48,12 +48,18 @@
 
 \nocite{*}
 
-\newcommand{\metadata}{
+\AtEndPreamble{
 	\hypersetup{
 		pdftitle = {\mytitle},
 		pdfauthor = {\student},
 		pdfsubject = {\mytitle}
 	}
+}
+
+\renewcommand{\maketitle}{
+	\begin{frame}[noframenumbering, plain]
+		\titlepage
+	\end{frame}
 }
 
 \renewcommand{\ULdepth}{1.8pt}
