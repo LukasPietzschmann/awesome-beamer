@@ -18,7 +18,7 @@ If you follow the above directory structure, this should be enough to get you st
 
 ## Compilation
 Using this theme requires you to run pdflatex (or whatever compiler you prefer) multiple times on your main LaTeX file. This is required for those litte dots in the footer to work.
-If you're using latexmk you don't have to do this manually as latexmk can figure this stuff out by itselfe.
+If you're using latexmk you don't have to do this manually as latexmk can figure this stuff out by itself.
 
 
 ## Example slides
