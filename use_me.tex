@@ -88,12 +88,19 @@
 \counterwithin*{framesinsection}{section}
 \counterwithin*{framesinsubsection}{subsection}
 
-\BeforeBeginEnvironment{frame}{
+\newcommand{\stepframe}{
 	\ifbeamer@noframenumbering\else%
 		\stepcounter{framesinsection}
 		\stepcounter{framesinsubsection}
 	\fi%
 }
+
+\BeforeBeginEnvironment{frame}{
+	\stepframe
+}
+\pretocmd{\againframe}{
+	\stepframe
+}{}{}
 
 \newcommand{\refreshcountsinaux}{
 	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\theframesinsubsection}}
