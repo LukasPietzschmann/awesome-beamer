@@ -77,21 +77,31 @@
 \usefolder{styles}
 \usetheme{Awesome}
 
-\newcounter{pagenumber}
+\newcounter{framesinsection}
+\newcounter{framesinsubsection}
+\counterwithin*{framesinsection}{section}
+\counterwithin*{framesinsubsection}{subsection}
+
 \BeforeBeginEnvironment{frame}{
-	\stepcounter{pagenumber}
+	\ifbeamer@noframenumbering\else%
+		\stepcounter{framesinsection}
+		\stepcounter{framesinsubsection}
+	\fi%
 }
 
-\counterwithin{framenumber}{subsection}
+\newcommand{\refreshcountsinaux}{
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\theframesinsubsection}}
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\theframesinsection}}
+}
+
 \pretocmd{\section}{
-	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\arabic{framenumber}}}
+	\refreshcountsinaux
 }{}{}
 \pretocmd{\subsection}{
-	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\arabic{framenumber}}}
+	\refreshcountsinaux
 }{}{}
 \AtEndDocument{
-	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\arabic{framenumber}}}
-	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\arabic{framenumber}}}
+	\refreshcountsinaux
 }
 \newcommand{\framespersection}{
 	\ifcsdef{s@totalsectionframes-\arabic{section}}{

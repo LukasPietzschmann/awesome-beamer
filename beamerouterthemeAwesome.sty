@@ -26,7 +26,7 @@
 				\hspace{.4em}%
 				\ifnum\framespersection>1%
 					\foreach \i in {1, ..., \framespersection}{%
-						\ifnum \i=\insertframenumber%
+						\ifnum \i=\theframesinsection%
 							~$\bullet$%
 						\else%
 							~$\circ$%
@@ -38,7 +38,7 @@
 				\hspace{.7em}%
 				\ifnum\framespersubsection>1%
 					\foreach \i in {1, ..., \framespersubsection}{%
-						\ifnum \i=\insertframenumber%
+						\ifnum \i=\theframesinsubsection%
 							~$\bullet$%
 						\else%
 							~$\circ$%
@@ -47,7 +47,7 @@
 				\fi%
 			\fi%
 			\hfill%
-			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\thepagenumber\hspace{0.3cm}}%
+			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
 		\end{beamercolorbox}%
 	}
 	\vskip0pt%
@@ -74,7 +74,7 @@
 			\hfill%
 			\mytitle%
 			\hfill%
-			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\thepagenumber\hspace{0.3cm}}%
+			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
 		\end{beamercolorbox}%
 	}
 	\vskip0pt%
