@@ -89,9 +89,20 @@
 \counterwithin*{framesinsubsection}{subsection}
 
 \newcommand{\stepframe}{
-	\ifbeamer@noframenumbering\else%
+	\ifbeamer@isfragile
 		\stepcounter{framesinsection}
 		\stepcounter{framesinsubsection}
+	\else%
+		\ifbeamer@noframenumbering\else%
+			\stepcounter{framesinsection}
+			\stepcounter{framesinsubsection}
+		\fi%
+	\fi%
+	\ifnum\theframesinsection=0
+		\setcounter{framesinsection}{1}
+	\fi%
+	\ifnum\theframesinsubsection=0
+		\setcounter{framesinsubsection}{1}
 	\fi%
 }
 
