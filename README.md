@@ -7,7 +7,7 @@ Just copy and paste `beamerthemeawesome.sty` into your project, add `\usetheme{a
 ## Options
 This theme provides some settings you can tweak:
 - Language: Possible values are `english` or `german`. This changes the value passed to babel and csquotes. If none of both is selected, `german` is used.
-- Extra slides: For each section and subsection an extra slide containing the title can be inserted. This is controlled by passing `secslide` and `subsecslide`. The absence of `secslide` indicates that you don't want an extra slide for every section. This is analog for `subsecslide`.
+- Extra slides: For each section and subsection an extra slide containing the title can be inserted. This is controlled by passing `secslide` or/and `subsecslide`. The absence of `secslide` indicates that you don't want an extra slide for every section. Analog for `subsecslide`.
 
 ## Compilation
 Using this theme requires you to run your compiler multiple times on your main LaTeX file. This is required for those litte dots in the footer to work.
