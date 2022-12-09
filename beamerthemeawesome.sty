@@ -1,7 +1,40 @@
 \ProvidesPackage{awesome-beamer-theme}[]
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=awesome,prefix=awesome@}
+
+\newif\ifawesome@english@
+
+\DeclareVoidOption{english}{
+	\awesome@english@true
+}
+
+\DeclareVoidOption{german}{
+	\awesome@english@false
+}
+
+\DeclareBoolOption{secslide}
+\DeclareBoolOption{subsecslide}
+
+\ProcessKeyvalOptions*
+
+\ifawesome@english@
+	\RequirePackage[english]{babel}
+\else
+	\RequirePackage[ngerman]{babel}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \RequirePackage{fontspec}
-\RequirePackage[ngerman]{babel}
 \RequirePackage{microtype}
 \RequirePackage{chngcntr}
 \RequirePackage{scrextend}
@@ -401,7 +434,15 @@
 				\fi%
 			\fi%
 			\hfill%
-			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
+			\colorbox{awesomehighlight!70}{
+				\hspace{0.3cm}
+				\ifawesome@english@
+					Page
+				\else
+					Seite
+				\fi
+				~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}
+			}%
 		\end{beamercolorbox}%
 	}
 	\vskip0pt%
@@ -424,7 +465,16 @@
 			\hfill%
 			\inserttitle%
 			\hfill%
-			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
+			\colorbox{awesomehighlight!70}{
+				\hspace{0.3cm}
+				\ifawesome@english@
+					Page
+				\else
+					Seite
+				\fi
+				~\insertframenumber~/~\inserttotalframenumber
+				\hspace{0.3cm}
+			}%
 		\end{beamercolorbox}%
 	}
 	\vskip0pt%
@@ -442,21 +492,25 @@
 
 
 \AtBeginSection[]{
-	\begin{frame}[noframenumbering]
-		\thispagestyle{navigation@toc}
-		\vfill
-		\centering
-		\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.~\usebeamercolor[fg]{title}\insertsectionhead\par
-		\vfill
-	\end{frame}
+	\ifawesome@secslide
+		\begin{frame}[noframenumbering]
+			\thispagestyle{navigation@toc}
+			\vfill
+			\centering
+			\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.~\usebeamercolor[fg]{title}\insertsectionhead\par
+			\vfill
+		\end{frame}
+	\fi
 }
 
 \AtBeginSubsection[]{
-	\begin{frame}[noframenumbering]
-		\thispagestyle{navigation@toc}
-		\vfill
-		\centering
-		\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\insertsubsectionnumber}~\usebeamercolor[fg]{title}\insertsubsectionhead\par
-		\vfill
-	\end{frame}
+	\ifawesome@subsecslide
+		\begin{frame}[noframenumbering]
+			\thispagestyle{navigation@toc}
+			\vfill
+			\centering
+			\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\insertsubsectionnumber}~\usebeamercolor[fg]{title}\insertsubsectionhead\par
+			\vfill
+		\end{frame}
+	\fi
 }
