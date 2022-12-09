@@ -50,9 +50,9 @@
 
 \AtEndPreamble{
 	\hypersetup{
-		pdftitle = {\mytitle},
-		pdfauthor = {\student},
-		pdfsubject = {\mytitle}
+		pdftitle = {\inserttitle},
+		pdfauthor = {\insertauthor},
+		pdfsubject = {\inserttitle}
 	}
 }
 
@@ -276,19 +276,27 @@
 	\newcommand{\awesome@background}{#1}
 }
 
+\newcommand{\email}[1]{
+	\newcommand{\awesome@email}{#1}
+}
+
+\newcommand{\insertemail}[0]{
+	\href{mailto:\awesome@email}{\awesome@email}
+}
+
+\newcommand{\uni}[1]{
+	\newcommand{\awesome@uni}{#1}
+}
+
+\newcommand{\insertuni}[0]{
+	\href{mailto:\awesome@uni}{\awesome@uni}
+}
+
 \tikzfading[
 	name=title page picture fading,
 	left color=transparent!0,
 	right color=transparent!100,
 ]
-
-\newcommand{\mytitle}{Title}
-\newcommand{\mysubtitle}{Subtitle}
-\newcommand{\student}{Max Mustermann}
-\newcommand{\mail}{max@mustermann.de}
-\newcommand{\myinstitute}{Some Institute}
-\newcommand{\uni}{Some Uni}
-\newcommand{\mydate}{\today}
 
 \def\ps@navigation@titlepage{
 	\setbeamertemplate{footline}{}
@@ -301,29 +309,29 @@
 		\raggedright
 		\usebeamerfont{title}
 		\usebeamercolor[fg]{title}
-		\mytitle\\
+		\inserttitle\\
 		\usebeamerfont{subtitle}
 		\usebeamercolor[fg]{subtitle}
-		\mysubtitle
+		\insertsubtitle
 
 		\usebeamertemplate{separator}
 
 		\usebeamerfont{author}
 		\usebeamercolor[fg]{author}
 		\vspace{2em}
-		\student\\
+		\insertauthor\\
 		\usebeamerfont{details}
 		\usebeamercolor[fg]{details}
-		\href{mailto:\mail}{\mail}
+		\insertemail
 
 		\vspace{2em}
 		\usebeamerfont{details}
 		\usebeamercolor[fg]{details}
-		\myinstitute\\
-		\uni
+		\insertinstitute\\
+		\insertuni
 
 		\vspace{2em}
-		\mydate
+		\insertdate
 	\end{minipage}
 
 	\ifdefined\awesome@background
@@ -365,9 +373,9 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\student%
+			\insertauthor%
 			\hfill%
-			\mytitle\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
+			\inserttitle\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
 			\ifnum\insertsectionstartpage=\insertsubsectionstartpage%
 				\hspace{.4em}%
 				\ifnum\framespersection>1%
@@ -412,9 +420,9 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\student%
+			\insertauthor%
 			\hfill%
-			\mytitle%
+			\inserttitle%
 			\hfill%
 			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
 		\end{beamercolorbox}%
