@@ -1,0 +1,454 @@
+\ProvidesPackage{awesome-beamer-theme}[]
+
+\RequirePackage{fontspec}
+\RequirePackage[ngerman]{babel}
+\RequirePackage{microtype}
+\RequirePackage{chngcntr}
+\RequirePackage{scrextend}
+\RequirePackage{contour}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{underscore}
+\RequirePackage{hyperref}
+
+\RequirePackage{listings}
+\lstdefinestyle{animateblocks}{
+	basicstyle=\color{black!20},
+	moredelim=**[is][\only<+>{\color{black}}]{@}{@},
+}
+\lstset{
+	escapeinside={<!}{!>},
+}
+
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, arrows.meta, shapes, automata, positioning, positioning, fit, calc, fadings, overlay-beamer-styles}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{inline} = [shape=rectangle,inner sep=0pt,text depth=0pt]
+\tikzstyle{squarednode} = [rectangle, draw=black, minimum size=5mm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{textarrow} = [awesomegray,thick,->,-{Kite[open]}]
+\tikzset{
+	node distance = 5mm,
+	invisible/.style={opacity=0},
+	visible on/.style={alt={#1{}{invisible}}},
+	alt/.code args={<#1>#2#3}{%
+		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+	},
+}
+
+\RequirePackage[
+	backend=biber,
+	style=alphabetic,
+	sorting=ynt
+]{biblatex}
+\RequirePackage[strict, autostyle]{csquotes}
+\nocite{*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\AtEndPreamble{
+	\hypersetup{
+		pdftitle = {\mytitle},
+		pdfauthor = {\student},
+		pdfsubject = {\mytitle}
+	}
+}
+
+\renewcommand{\maketitle}{
+	\begin{frame}[noframenumbering, plain]
+		\titlepage
+	\end{frame}
+}
+
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+\newcommand{\gul}[1]{%
+	\uline{\phantom{#1}}%
+	\llap{\contour{white}{#1}}%
+}
+
+
+\renewcommand{\textsubscript}[1]{
+	\scalebox{0.7}{#1}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcounter{framesinsection}
+\newcounter{framesinsubsection}
+\counterwithin*{framesinsection}{section}
+\counterwithin*{framesinsubsection}{subsection}
+
+\newcommand{\stepframe}{
+	\ifbeamer@isfragile
+		\stepcounter{framesinsection}
+		\stepcounter{framesinsubsection}
+	\else%
+		\ifbeamer@noframenumbering\else%
+			\stepcounter{framesinsection}
+			\stepcounter{framesinsubsection}
+		\fi%
+	\fi%
+	\ifnum\theframesinsection=0
+		\setcounter{framesinsection}{1}
+	\fi%
+	\ifnum\theframesinsubsection=0
+		\setcounter{framesinsubsection}{1}
+	\fi%
+}
+
+\BeforeBeginEnvironment{frame}{
+	\stepframe
+}
+\pretocmd{\againframe}{
+	\stepframe
+}{}{}
+
+\newcommand{\refreshcountsinaux}{
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{\theframesinsubsection}}
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\theframesinsection}}
+}
+
+\pretocmd{\section}{
+	\refreshcountsinaux
+}{}{}
+
+\pretocmd{\subsection}{
+	\refreshcountsinaux
+}{}{}
+
+\AtEndDocument{
+	\refreshcountsinaux
+}
+
+\newcommand{\framespersection}{
+	\ifcsdef{s@totalsectionframes-\arabic{section}}{
+		\csname s@totalsectionframes-\arabic{section}\endcsname
+	}{
+		0
+	}
+}
+
+\newcommand{\framespersubsection}{
+	\ifcsdef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{
+		\csname s@totalsubsectionframes-\arabic{section}-\arabic{subsection}\endcsname
+	}{
+		0
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{awesomeblack}{HTML}{241f31}
+\definecolor{awesomemarroon}{HTML}{63452c}
+\definecolor{awesomegray}{HTML}{77767b}
+\definecolor{awesomelightgray}{HTML}{f6f5f4}
+\definecolor{awesomewhite}{HTML}{ffffff}
+\definecolor{awesomeblue}{HTML}{1c71d8}
+\definecolor{awesomegreen}{HTML}{26a269}
+\definecolor{awesomehighlight}{HTML}{c01c28}
+\definecolor{awesomehighlightlight}{HTML}{E46271}
+
+\setbeamercolor{alerted text}{fg=awesomehighlight}
+
+\setbeamercolor{subtitle}{fg=awesomegray}
+\setbeamercolor{frametitle}{fg=awesomeblack}
+\setbeamercolor{framesubtitle}{fg=awesomegray}
+
+\setbeamercolor{details}{fg=awesomeblack}
+\setbeamercolor{author}{fg=awesomeblack}
+
+\setbeamercolor{section number projected}{bg=awesomeblack, fg=awesomehighlight}
+\setbeamercolor{subsection number projected}{fg=awesomelightgray, fg=awesomehighlightlight}
+
+\setbeamercolor{structure}{fg=awesomeblack}
+\setbeamercolor{normal text}{fg=awesomeblack}
+\setbeamercolor{separator}{fg=awesomemarroon, bg=awesomemarroon}
+\setbeamercolor{footline}{bg=awesomelightgray}
+
+\setbeamercolor{block body}{bg=awesomelightgray}
+\setbeamercolor{block title}{bg=awesomeblack, fg=awesomewhite}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setsansfont[
+	Ligatures=TeX,
+	BoldFont={* Medium},
+]{Fira Sans}
+
+\setbeamerfont{title}{
+	size=\LARGE,
+	shape=\bfseries\scshape
+}
+
+\setbeamerfont{subtitle}{
+	size=\large,
+	shape=\normalfont
+}
+
+\setbeamerfont{author}{
+	size=\normalsize,
+	shape=\normalfont
+}
+
+\setbeamerfont{details}{
+	size=\footnotesize,
+	shape=\normalfont
+}
+
+\setbeamerfont{footline}{
+	size=\tiny,
+	shape=\normalfont
+}
+
+\setbeamerfont{frametitle}{
+	size=\LARGE,
+	shape=\bfseries\scshape
+}
+
+\setbeamerfont{framesubtitle}{
+	size=\normalsize,
+	shape=\normalfont
+}
+
+\setbeamerfont{block title}{
+	size=\normalfont,
+	shape=\strut
+}
+
+\setbeamerfont{blockdef}{
+	size=\large,
+	shape=\bfseries
+}
+
+\setbeamerfont{description item}{
+	shape=\bfseries
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamersize{description width=0.5cm}
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+
+\setbeamertemplate{frametitle continuation}{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+
+\setbeamertemplate{section in toc}{
+	\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.\usebeamercolor[fg]{normal text}~\inserttocsection
+}
+
+\setbeamertemplate{subsection in toc}{
+	~~~~\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\inserttocsubsectionnumber}~\usebeamercolor[fg]{normal text}\inserttocsubsection
+}
+
+\setbeamertemplate{separator}{
+	\usebeamercolor{separator}
+	\textcolor{fg}{\rule{.7\textwidth}{.5pt}}
+}
+
+\setbeamertemplate{frametitle}{
+	\vskip1em\par
+	\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par
+	\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\background}[1]{
+	\newcommand{\awesome@background}{#1}
+}
+
+\tikzfading[
+	name=title page picture fading,
+	left color=transparent!0,
+	right color=transparent!100,
+]
+
+\newcommand{\mytitle}{Title}
+\newcommand{\mysubtitle}{Subtitle}
+\newcommand{\student}{Max Mustermann}
+\newcommand{\mail}{max@mustermann.de}
+\newcommand{\myinstitute}{Some Institute}
+\newcommand{\uni}{Some Uni}
+\newcommand{\mydate}{\today}
+
+\def\ps@navigation@titlepage{
+	\setbeamertemplate{footline}{}
+	\@nameuse{ps@navigation}
+}
+
+\setbeamertemplate{title page}{%
+	\thispagestyle{navigation@titlepage}
+	\begin{minipage}{.8\textwidth}
+		\raggedright
+		\usebeamerfont{title}
+		\usebeamercolor[fg]{title}
+		\mytitle\\
+		\usebeamerfont{subtitle}
+		\usebeamercolor[fg]{subtitle}
+		\mysubtitle
+
+		\usebeamertemplate{separator}
+
+		\usebeamerfont{author}
+		\usebeamercolor[fg]{author}
+		\vspace{2em}
+		\student\\
+		\usebeamerfont{details}
+		\usebeamercolor[fg]{details}
+		\href{mailto:\mail}{\mail}
+
+		\vspace{2em}
+		\usebeamerfont{details}
+		\usebeamercolor[fg]{details}
+		\myinstitute\\
+		\uni
+
+		\vspace{2em}
+		\mydate
+	\end{minipage}
+
+	\ifdefined\awesome@background
+		\begin{tikzpicture}[remember picture, overlay]
+			\clip (current page.south east)
+				-- (current page.north east)
+				-- ++(-5.1, 0)
+				-- ++(-3, -\paperheight)
+				-- cycle;
+
+			\node[
+				anchor=south east,
+				inner sep=0,
+				outer sep=0
+			] at (current page.south east) {
+				\includegraphics[height=\paperheight]{\awesome@background}
+			};
+
+			\fill[
+				black, path fading=title page picture fading,
+				fading angle=-15
+			]
+			(current page.south east)
+			rectangle
+			++(-10, \dimexpr\paperheight+1cm);
+		\end{tikzpicture}
+	\fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+		\usebeamerfont{footline}%
+		\begin{beamercolorbox}[
+			wd=\textwidth,
+			ht=2.5ex,
+			dp=1ex
+		]{footline}%
+			\hspace{0.3cm}%
+			\student%
+			\hfill%
+			\mytitle\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
+			\ifnum\insertsectionstartpage=\insertsubsectionstartpage%
+				\hspace{.4em}%
+				\ifnum\framespersection>1%
+					\foreach \i in {1, ..., \framespersection}{%
+						\ifnum \i=\theframesinsection%
+							~$\bullet$%
+						\else%
+							~$\circ$%
+						\fi%
+					}%
+				\fi%
+			\else
+				\hspace{.7em}$\cdot$\hspace{.7em}\insertsubsection%
+				\hspace{.7em}%
+				\ifnum\framespersubsection>1%
+					\foreach \i in {1, ..., \framespersubsection}{%
+						\ifnum \i=\theframesinsubsection%
+							~$\bullet$%
+						\else%
+							~$\circ$%
+						\fi%
+					}%
+				\fi%
+			\fi%
+			\hfill%
+			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
+		\end{beamercolorbox}%
+	}
+	\vskip0pt%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\ps@navigation@toc{
+	\setbeamertemplate{footline}{
+		\leavevmode%
+		\hbox{%
+		\usebeamerfont{footline}%
+		\begin{beamercolorbox}[
+			wd=\textwidth,
+			ht=2.5ex,
+			dp=1ex
+		]{footline}%
+			\hspace{0.3cm}%
+			\student%
+			\hfill%
+			\mytitle%
+			\hfill%
+			\colorbox{awesomehighlight!70}{\hspace{0.3cm}Seite~\insertframenumber~/~\inserttotalframenumber\hspace{0.3cm}}%
+		\end{beamercolorbox}%
+	}
+	\vskip0pt%
+	}
+	\@nameuse{ps@navigation}
+}
+
+\pretocmd{\tableofcontents}{
+	\thispagestyle{navigation@toc}
+}{}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\AtBeginSection[]{
+	\begin{frame}[noframenumbering]
+		\thispagestyle{navigation@toc}
+		\vfill
+		\centering
+		\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.~\usebeamercolor[fg]{title}\insertsectionhead\par
+		\vfill
+	\end{frame}
+}
+
+\AtBeginSubsection[]{
+	\begin{frame}[noframenumbering]
+		\thispagestyle{navigation@toc}
+		\vfill
+		\centering
+		\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\insertsubsectionnumber}~\usebeamercolor[fg]{title}\insertsubsectionhead\par
+		\vfill
+	\end{frame}
+}
