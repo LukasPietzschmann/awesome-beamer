@@ -409,7 +409,7 @@
 			\insertauthor%
 			\hfill%
 			\inserttitle\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
-			\ifnum\insertsectionstartpage=\insertsubsectionstartpage%
+			\ifx\insertsubsection\empty
 				\hspace{.4em}%
 				\ifnum\framespersection>1%
 					\foreach \i in {1, ..., \framespersection}{%
