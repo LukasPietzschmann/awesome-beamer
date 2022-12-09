@@ -22,4 +22,4 @@ If you're using latexmk you don't have to do this manually as latexmk can figure
 
 
 ## Example slides
-![example.pdf](https://github.com/LukasPietzschmann/awesome-beamer/blob/693226e78d4c1e11b30030dcf54f8ca75000998d/example/example.pdf)
+![example.pdf](https://github.com/LukasPietzschmann/awesome-beamer/blob/master/example/example.pdf)
