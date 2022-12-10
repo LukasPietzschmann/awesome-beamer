@@ -321,8 +321,16 @@
 	\newcommand{\awesome@uni}{#1}
 }
 
+\newcommand{\location}[1]{
+	\newcommand{\awesome@location}{#1}
+}
+
+\newcommand{\insertlocation}[0]{
+	\awesome@location
+}
+
 \newcommand{\insertuni}[0]{
-	\href{mailto:\awesome@uni}{\awesome@uni}
+	\awesome@uni
 }
 
 \tikzfading[
@@ -495,24 +503,33 @@
 
 \AtBeginSection[]{
 	\ifawesome@secslide
-		\begin{frame}[noframenumbering]
+		\begin{frame}[c, noframenumbering]
 			\thispagestyle{navigation@toc}
-			\vfill
 			\centering
 			\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.~\usebeamercolor[fg]{title}\insertsectionhead\par
-			\vfill
 		\end{frame}
 	\fi
 }
 
 \AtBeginSubsection[]{
 	\ifawesome@subsecslide
-		\begin{frame}[noframenumbering]
+		\begin{frame}[c, noframenumbering]
 			\thispagestyle{navigation@toc}
-			\vfill
 			\centering
 			\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\insertsubsectionnumber}~\usebeamercolor[fg]{title}\insertsubsectionhead\par
-			\vfill
 		\end{frame}
 	\fi
+}
+
+\AtEndDocument{
+	{\setbeamercolor{background canvas}{bg=awesomehighlight!70!black}
+	\begin{frame}[b, noframenumbering]
+		\color{white}
+		\thispagestyle{navigation@titlepage}
+		\Large\textbf{\insertauthor}
+		\vskip0.5em
+		\scriptsize\insertlocation,~\insertdate
+		\hfill
+		\insertemail
+	\end{frame}}
 }
