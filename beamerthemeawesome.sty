@@ -292,10 +292,12 @@
 }
 
 \setbeamertemplate{subsection in toc}{
-	\hskip2em%
-	\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.%
-	\textsubscript{\usebeamercolor[fg]{subsection number projected}\inserttocsubsectionnumber}%
-	~\usebeamercolor[fg]{normal text}\inserttocsubsection
+	\mbox{
+		\hskip2em%
+		\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.%
+		\textsubscript{\usebeamercolor[fg]{subsection number projected}\inserttocsubsectionnumber}%
+		~\usebeamercolor[fg]{normal text}\inserttocsubsection
+	}
 }
 
 \setbeamertemplate{separator}{
