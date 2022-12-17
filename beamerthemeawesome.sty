@@ -287,11 +287,15 @@
 \setbeamertemplate{headline}{}
 
 \setbeamertemplate{section in toc}{
-	\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.\usebeamercolor[fg]{normal text}~\inserttocsection
+	\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.%
+	\usebeamercolor[fg]{normal text}~\inserttocsection
 }
 
 \setbeamertemplate{subsection in toc}{
-	~~~~\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\inserttocsubsectionnumber}~\usebeamercolor[fg]{normal text}\inserttocsubsection
+	\hskip2em%
+	\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.%
+	\textsubscript{\usebeamercolor[fg]{subsection number projected}\inserttocsubsectionnumber}%
+	~\usebeamercolor[fg]{normal text}\inserttocsubsection
 }
 
 \setbeamertemplate{separator}{
