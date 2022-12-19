@@ -288,16 +288,21 @@
 \setbeamertemplate{headline}{}
 
 \setbeamertemplate{section in toc}{
-	\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.%
-	\usebeamercolor[fg]{normal text}~\inserttocsection
+	\usebeamercolor[fg]{section number projected}
+	\inserttocsectionnumber.%
+	\usebeamercolor[fg]{normal text}
+	~\inserttocsection
 }
 
 \setbeamertemplate{subsection in toc}{
 	\mbox{
 		\hskip2em%
-		\usebeamercolor[fg]{section number projected}\inserttocsectionnumber.%
-		\textsubscript{\usebeamercolor[fg]{subsection number projected}\inserttocsubsectionnumber}%
-		~\usebeamercolor[fg]{normal text}\inserttocsubsection
+		\usebeamercolor[fg]{section number projected}
+		\inserttocsectionnumber.%
+		\usebeamercolor[fg]{subsection number projected}%
+		\textsubscript{\inserttocsubsectionnumber}~%
+		\usebeamercolor[fg]{normal text}
+		\inserttocsubsection
 	}
 }
 
@@ -519,9 +524,13 @@
 \AtBeginSection[]{
 	\ifawesome@secslide
 		\begin{frame}[c, noframenumbering]
-			\thispagestyle{navigation@toc}
-			\centering
-			\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.~\usebeamercolor[fg]{title}\insertsectionhead\par
+			\thispagestyle{navigation@toc}%
+			\centering%
+			\usebeamerfont{title}%
+			\usebeamercolor[fg]{section number projected}%
+			\scalebox{1.3}{ \raisebox{-1pt}{\insertsectionnumber}}.~%
+			\usebeamercolor[fg]{title}%
+			\insertsectionhead\par
 		\end{frame}
 	\fi
 }
@@ -529,9 +538,15 @@
 \AtBeginSubsection[]{
 	\ifawesome@subsecslide
 		\begin{frame}[c, noframenumbering]
-			\thispagestyle{navigation@toc}
-			\centering
-			\usebeamerfont{title}\usebeamercolor[fg]{section number projected}\insertsectionnumber.\textsubscript{\usebeamercolor[fg]{subsection number projected}\insertsubsectionnumber}~\usebeamercolor[fg]{title}\insertsubsectionhead\par
+			\thispagestyle{navigation@toc}%
+			\centering%
+			\usebeamerfont{title}%
+			\usebeamercolor[fg]{section number projected}%
+			\scalebox{1.3}{\raisebox{-1pt}{\insertsectionnumber}}.%
+			\usebeamercolor[fg]{subsection number projected}%
+			\textsubscript{\insertsubsectionnumber}~%
+			\usebeamercolor[fg]{title}%
+			\insertsubsectionhead\par
 		\end{frame}
 	\fi
 }
