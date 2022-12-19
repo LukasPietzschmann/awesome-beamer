@@ -36,6 +36,7 @@
 
 \RequirePackage{fontspec}
 \RequirePackage{microtype}
+\RequirePackage{etoolbox}
 \RequirePackage{chngcntr}
 \RequirePackage{scrextend}
 \RequirePackage{contour}
@@ -507,6 +508,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Kinda hacky, but AtBeginEnvironment does not work with beamer tex.stackexchange.com/a/436338/286979
+\pretocmd\beamer@checkframetitle{
+	\transfade[duration=0.1]
+}
 
 
 \AtBeginSection[]{
