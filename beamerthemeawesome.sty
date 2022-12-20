@@ -156,7 +156,7 @@
 	% At this point, the section command has not yet incremented the section counter, so we need to do this by ourselves
 	\setcounter{secinc}{\thesection + 1}
 	\refreshcountsinaux
-	\immediate\write\@auxout{\global\noexpand\@namedef{s@frameatsecstart-\arabic{subsecinc}}{\insertframenumber}}
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@frameatsecstart-\arabic{secinc}}{\insertframenumber}}
 }{}{}
 
 \newcounter{subsecinc}
@@ -454,7 +454,7 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\insertauthor~\insertsectionstartframe~\insertsubsectionstartframe~\insertframenumber%
+			\insertauthor~%
 			\hfill%
 			\inserttitle\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
 			\ifx\insertsubsection\empty
@@ -550,7 +550,7 @@
 		\label{page:\insertframenumber}
 	\else%
 		\ifbeamer@noframenumbering\else%
-			\label{page:\insertframenumber}
+			\hypertarget{page:\insertframenumber}{}
 		\fi%
 	\fi%
 }
