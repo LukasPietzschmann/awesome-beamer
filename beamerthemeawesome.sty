@@ -35,6 +35,7 @@
 
 
 \RequirePackage{fontspec}
+\RequirePackage{calc}
 \RequirePackage{microtype}
 \RequirePackage{etoolbox}
 \RequirePackage{chngcntr}
@@ -150,12 +151,20 @@
 	\immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\theframesinsection}}
 }
 
+\newcounter{secinc}
 \pretocmd{\section}{
+	% At this point, the section command has not yet incremented the section counter, so we need to do this by ourselves
+	\setcounter{secinc}{\thesection + 1}
 	\refreshcountsinaux
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@frameatsecstart-\arabic{subsecinc}}{\insertframenumber}}
 }{}{}
 
+\newcounter{subsecinc}
 \pretocmd{\subsection}{
+	% At this point, the subsection command has not yet incremented the subsection counter, so we need to do this by ourselves
+	\setcounter{subsecinc}{\thesubsection + 1}
 	\refreshcountsinaux
+	\immediate\write\@auxout{\global\noexpand\@namedef{s@frameatsubsecstart-\arabic{section}-\arabic{subsecinc}}{\insertframenumber}}
 }{}{}
 
 \AtEndDocument{
@@ -173,6 +182,22 @@
 \newcommand{\framespersubsection}{
 	\ifcsdef{s@totalsubsectionframes-\arabic{section}-\arabic{subsection}}{
 		\csname s@totalsubsectionframes-\arabic{section}-\arabic{subsection}\endcsname
+	}{
+		0
+	}
+}
+
+\newcommand{\insertsectionstartframe}{
+	\ifcsdef{s@frameatsecstart-\arabic{section}}{
+		\csname s@frameatsecstart-\arabic{section}\endcsname
+	}{
+		0
+	}
+}
+
+\newcommand{\insertsubsectionstartframe}{
+	\ifcsdef{s@frameatsubsecstart-\arabic{section}-\arabic{subsection}}{
+		\csname s@frameatsubsecstart-\arabic{section}-\arabic{subsection}\endcsname
 	}{
 		0
 	}
@@ -418,6 +443,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newcounter{pagenumbertolinkto}
 \setbeamertemplate{footline}{
 	\leavevmode%
 	\hbox{%
@@ -428,7 +454,7 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\insertauthor%
+			\insertauthor~\insertsectionstartframe~\insertsubsectionstartframe~\insertframenumber%
 			\hfill%
 			\inserttitle\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
 			\ifx\insertsubsection\empty
@@ -438,7 +464,8 @@
 						\ifnum \i=\theframesinsection%
 							~$\bullet$%
 						\else%
-							~$\circ$%
+							\setcounter{pagenumbertolinkto}{\i + \insertsectionstartframe}%
+							~\hyperlink{page:\thepagenumbertolinkto}{$\circ$}%
 						\fi%
 					}%
 				\fi%
@@ -450,7 +477,8 @@
 						\ifnum \i=\theframesinsubsection%
 							~$\bullet$%
 						\else%
-							~$\circ$%
+							\setcounter{pagenumbertolinkto}{\i + \insertsubsectionstartframe}%
+							~\hyperlink{page:\thepagenumbertolinkto}{$\circ$}%
 						\fi%
 					}%
 				\fi%
@@ -518,6 +546,13 @@
 % Kinda hacky, but AtBeginEnvironment does not work with beamer tex.stackexchange.com/a/436338/286979
 \pretocmd\beamer@checkframetitle{
 	\transfade[duration=0.1]
+	\ifbeamer@isfragile
+		\label{page:\insertframenumber}
+	\else%
+		\ifbeamer@noframenumbering\else%
+			\label{page:\insertframenumber}
+		\fi%
+	\fi%
 }
 
 
