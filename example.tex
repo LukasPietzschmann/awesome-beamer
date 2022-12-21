@@ -67,29 +67,29 @@
 					remember picture,
 					overlay,
 			]
-				\node[squarednode](P1)[background default draw=black, draw=awesomehighlight, draw on=<3>, yshift=1cm]{P1};
-				\node[squarednode](P2)[right=of P1, background default draw=black, draw=awesomehighlight, draw on=<3>]{P2};
-				\node[squarednode](P3)[right=of P2, background default draw=black, draw=awesomehighlight, draw on=<3>]{P3};
-				\node[squarednode](P4)[right=of P3, background default draw=black, draw=awesomehighlight, draw on=<3>]{P4};
-				\node[squarednode](P5)[right=of P4, background default draw=black, draw=awesomehighlight, draw on=<3>]{P5};
+				\node[squarenode](P1)[background default draw=black, draw=awesomehighlight, draw on=<3>, yshift=1cm]{P1};
+				\node[squarenode](P2)[right=of P1, background default draw=black, draw=awesomehighlight, draw on=<3>]{P2};
+				\node[squarenode](P3)[right=of P2, background default draw=black, draw=awesomehighlight, draw on=<3>]{P3};
+				\node[squarenode](P4)[right=of P3, background default draw=black, draw=awesomehighlight, draw on=<3>]{P4};
+				\node[squarenode](P5)[right=of P4, background default draw=black, draw=awesomehighlight, draw on=<3>]{P5};
 				\node[draw=none](etc)[right=of P5]{...};
-				\node[draw=awesomehighlight!70, background default draw=black, draw on=<{2,6,7}>, fit=(P1) (P2) (P3) (P4) (P5) (etc)] {};
+				\node[squarenode, draw=awesomehighlight!70, background default draw=black, draw on=<{2,6,7}>, fit=(P1) (P2) (P3) (P4) (P5) (etc)] {};
 				\node[draw=none] at (6.2, 1.5) {\fontspec{Symbola}\symbol{"1F512}};
 
-				\node[squarednode](N1)[below=of P2, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N1};
-				\node[squarednode](N2)[right=of N1, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N2};
-				\node[squarednode](N3)[right=of N2, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N3};
+				\node[squarenode](N1)[below=of P2, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N1};
+				\node[squarenode](N2)[right=of N1, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N2};
+				\node[squarenode](N3)[right=of N2, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N3};
 
-				\node[squarednode](P1p)[below=1.5cm of P1, visible on=<{7-9}>]{P1'};
-				\node[squarednode](P2p)[right=of P1p, visible on=<{7-9}>]{P2'};
-				\node[squarednode](P3p)[right=of P2p, visible on=<{7-9}>]{P3'};
-				\node[squarednode](P4p)[right=of P3p, visible on=<{7-9}>]{P4'};
-				\node[squarednode](P5p)[right=of P4p, visible on=<{7-9}>]{P5'};
+				\node[squarenode](P1p)[below=1.5cm of P1, visible on=<{7-9}>]{P1'};
+				\node[squarenode](P2p)[right=of P1p, visible on=<{7-9}>]{P2'};
+				\node[squarenode](P3p)[right=of P2p, visible on=<{7-9}>]{P3'};
+				\node[squarenode](P4p)[right=of P3p, visible on=<{7-9}>]{P4'};
+				\node[squarenode](P5p)[right=of P4p, visible on=<{7-9}>]{P5'};
 				\node[draw=none, visible on=<{7-9}>](etcp)[right=of P5p]{...};
-				\node[draw=awesomegreen, background default draw=black, visible on=<{7-9}>, draw on=<7>, fit=(P1p) (P2p) (P3p) (P4p) (P5p) (etcp)] {};
+				\node[squarenode, draw=awesomegreen, background default draw=black, visible on=<{7-9}>, draw on=<7>, fit=(P1p) (P2p) (P3p) (P4p) (P5p) (etcp)] {};
 				\node[draw=none, visible on=<{7-9}>] at (6.55, -0.55) {\fontspec{Symbola}\symbol{"1F512}};
 
-				\node[squarednode](S)[below=of N2, background default draw=black, draw=awesomeblue, draw on=<6>, visible on=<6>]{S};
+				\node[squarenode](S)[below=of N2, background default draw=black, draw=awesomeblue, draw on=<6>, visible on=<6>]{S};
 
 				\draw[arrow, visible on=<{4-7}>] (P1) -- (N1);
 				\draw[arrow, visible on=<{4-7}>] (P2) -- (N2);
@@ -133,11 +133,6 @@
 
 \begin{frame}{No information shown}
 	\lipsum[2][1-8]
-\end{frame}
-
-\subsection{Bibliography}
-\begin{frame}{Bibliography}
-	\printbibliography
 \end{frame}
 
 \end{document}
