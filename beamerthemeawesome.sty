@@ -46,11 +46,14 @@
 \RequirePackage{hyperref}
 
 \RequirePackage{listings}
+\RequirePackage[verbatim=true]{lstfiracode}
 \lstdefinestyle{animateblocks}{
-	basicstyle=\color{black!20},
+	basicstyle=\ttfamily\color{black!20},
 	moredelim=**[is][\only<+>{\color{black}}]{@}{@},
 }
 \lstset{
+	style=FiraCodeStyle,
+	basicstyle=\ttfamily,
 	commentstyle=\color{gray}\itshape,
 	keywordstyle=\bfseries,
 	escapeinside={<!}{!>},
@@ -262,6 +265,9 @@
 	Ligatures=TeX,
 	BoldFont={* Medium},
 ]{Fira Sans}
+\setmonofont[
+	Contextuals=Alternate
+]{Fira Code}
 
 \setbeamerfont{title}{
 	size=\LARGE,
