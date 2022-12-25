@@ -19,3 +19,6 @@ If you're using latexmk you don't have to do this manually as latexmk can figure
 
 ## Example slides
 ![example.pdf](https://github.com/LukasPietzschmann/awesome-beamer/blob/master/example.pdf)
+
+## Related stuff
+If you're looking for other LaTeX classes in the same style, you may want to take a look at this repo: [tex-classes](https://github.com/LukasPietzschmann/tex-classes).
