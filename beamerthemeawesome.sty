@@ -18,6 +18,7 @@
 	\awesome@english@false
 }
 
+\DeclareBoolOption{notoc}
 \DeclareBoolOption{secslide}
 \DeclareBoolOption{subsecslide}
 
@@ -111,6 +112,12 @@
 	\begin{frame}[noframenumbering, plain]
 		\titlepage
 	\end{frame}
+
+	\ifawesome@notoc\else
+		\begin{frame}{Agenda}
+			\tableofcontents
+		\end{frame}
+	\fi
 }
 
 \renewcommand{\ULdepth}{1.8pt}

@@ -8,6 +8,7 @@ Just copy and paste `beamerthemeawesome.sty` into your project, add `\usetheme{a
 This theme provides some settings you can tweak:
 - Language: Possible values are `english` or `german`. This changes the value passed to babel and csquotes. If none of both is selected, `german` is used.
 - Extra slides: For each section and subsection an extra slide containing the title can be inserted. This is controlled by passing `secslide` or/and `subsecslide`. The absence of `secslide` indicates that you don't want an extra slide for every section. Analog for `subsecslide`.
+- Automatic toc: A table of contents is automatically inserted with the `\maketitle` command (After the title slide). If you want to disable this behavior, you have to set the `notoc` option.
 
 If you wanna set one (or more) of those values, you have to pass it to `\usetheme`. Look at ![example.tex](https://github.com/LukasPietzschmann/awesome-beamer/blob/master/example.tex) for, well, an example.
 
