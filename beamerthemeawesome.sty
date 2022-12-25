@@ -548,13 +548,44 @@
 			\hfill%
 			\colorbox{awesomehighlight}{
 				\color{white}
+				\hspace{0.3cm}%
+				Agenda
 				\hspace{0.3cm}
+			}%
+		\end{beamercolorbox}%
+	}
+	\vskip0pt%
+	}
+	\@nameuse{ps@navigation}
+}
+
+\def\ps@navigation@sec{
+	\setbeamertemplate{footline}{
+		\leavevmode%
+		\hbox{%
+		\usebeamerfont{footline}%
+		\begin{beamercolorbox}[
+			wd=\textwidth,
+			ht=2.5ex,
+			dp=1ex
+		]{footline}%
+			\hspace{0.3cm}%
+			\insertauthor%
+			\hfill%
+			\hyperlinkdocumentstart{\inserttitle}%
+			\hfill%
+			\colorbox{awesomehighlight}{
+				\color{white}
+				\hspace{0.3cm}%
 				\ifawesome@english@
-					Page
+				Section
 				\else
-					Seite
+				Kapitel
 				\fi
-				~\insertframenumber~/~\inserttotalframenumber
+				~\thesection
+				\ifx\insertsubsection\empty\else
+					.\thesubsection
+				\fi
 				\hspace{0.3cm}
 			}%
 		\end{beamercolorbox}%
@@ -589,7 +620,7 @@
 \AtBeginSection[]{
 	\ifawesome@secslide
 		\begin{frame}[c, noframenumbering]
-			\thispagestyle{navigation@toc}%
+			\thispagestyle{navigation@sec}%
 			\centering%
 			\usebeamerfont{title}%
 			\usebeamercolor[fg]{section number projected}%
@@ -603,7 +634,7 @@
 \AtBeginSubsection[]{
 	\ifawesome@subsecslide
 		\begin{frame}[c, noframenumbering]
-			\thispagestyle{navigation@toc}%
+			\thispagestyle{navigation@sec}%
 			\centering%
 			\usebeamerfont{title}%
 			\usebeamercolor[fg]{section number projected}%
