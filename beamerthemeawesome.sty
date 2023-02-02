@@ -132,6 +132,15 @@
 	\scalebox{0.7}{#1}
 }
 
+\let\oldft\frametitle
+\renewcommand\frametitle[2][\empty]{
+	\if{#1}\empty%
+		\oldft{#2}%
+	\else%
+		\oldft{#2\hfill\normalfont\large\color{awesomegray}\raisebox{0.3ex}{#1}}%
+	\fi
+}
+
 \BeforeBeginEnvironment{tabular}{
 	\renewcommand{\arraystretch}{1.1}
 	\rowcolors{2}{awesomelightgray}{white}

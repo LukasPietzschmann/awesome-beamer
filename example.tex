@@ -19,7 +19,9 @@
 \maketitle
 
 \section{Section 1}
-\begin{frame}{Example Slide}{With a subtitle}
+\begin{frame}
+	\frametitle[Another Title]{Example Slide}
+	\framesubtitle{With a subtitle}
 	\begin{columns}[t]
 		\begin{column}{0.45\textwidth}
 			\lipsum[1][1-5]
@@ -39,7 +41,8 @@
 
 \tikzstyle{every picture}+=[remember picture]
 \tikzstyle{na} = [shape=rectangle,inner sep=0pt,text depth=0pt]
-\begin{frame}{Another Slide}
+\begin{frame}
+	\frametitle{Another Slide}
 	\begin{itemize}
 		\item That info is sooooooo \tikz\node[na] (A) {\gul{important}};
 		\item This is a key \tikz\node[na] (D) {\gul{word}};, isn't it?
@@ -56,7 +59,9 @@
 
 \section{Section 2}
 \subsection{Subsection 1}
-\begin{frame}{Cool picture}{With animations}
+\begin{frame}
+	\frametitle{Cool picture}
+	\framesubtitle{With animations}
 	\begin{columns}
 		\begin{column}{0.45\textwidth}
 			\begin{tikzpicture}[
@@ -127,7 +132,8 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{No information shown}
+\begin{frame}
+	\frametitle{No information shown}
 	\lipsum[2][1-8]
 \end{frame}
 
