@@ -39,8 +39,6 @@
 \RequirePackage{calc}
 \RequirePackage{microtype}
 \RequirePackage{etoolbox}
-\RequirePackage{chngcntr}
-\RequirePackage{scrextend}
 \RequirePackage{contour}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{underscore}
@@ -134,10 +132,8 @@
 }
 
 \let\oldft\frametitle
-\renewcommand\frametitle[2][\empty]{
-	\if{#1}\empty%
-		\oldft{#2}%
-	\else%
+\renewcommand\frametitle[2][]{
+	\ifx\relax#1\relax\oldft{#2}\else%
 		\oldft{#2\hfill\normalfont\large\color{awesomegray}\raisebox{0.3ex}{#1}}%
 	\fi
 }
