@@ -19,6 +19,31 @@
 \maketitle
 
 \section{Section 1}
+\begin{frame}[fragile]
+	\frametitle{Boxes}
+	\begin{columns}[t]
+		\begin{column}{0.45\textwidth}
+			\begin{block}[Some Title]
+				This is an important information
+			\end{block}
+			\begin{alertblock}[Argh]
+				Gotcha!
+			\end{alertblock}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{examples}[Example 1]
+				\begin{verbatim}
+\begin{alertblock}[Argh]
+	Gotcha!
+\end{alertblock}
+				\end{verbatim}
+			\end{examples}
+			\begin{definition}
+				I'm a definition with no title
+			\end{definition}
+		\end{column}
+	\end{columns}
+\end{frame}
 \begin{frame}
 	\frametitle[Another Title]{Example Slide}
 	\framesubtitle{With a subtitle}

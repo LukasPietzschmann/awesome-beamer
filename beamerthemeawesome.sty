@@ -44,6 +44,7 @@
 \RequirePackage{contour}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{underscore}
+\RequirePackage{tcolorbox}
 \RequirePackage{hyperref}
 
 \RequirePackage{listings}
@@ -387,6 +388,24 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{beamerbox}[2]{IfBlankTF={#2}{toprule=2mm}{title=#2},colback=#1!5!white,colframe=#1!75!black}
+
+\renewenvironment{definition}[1][\empty]{
+	\begin{beamerbox}{awesomemarroon}{#1}
+}{\end{beamerbox}}
+
+\renewenvironment{block}[1][]{
+	\begin{beamerbox}{awesomeblue}{#1}
+}{\end{beamerbox}}
+
+\renewenvironment{examples}[1][]{
+	\begin{beamerbox}{awesomegreen}{#1}
+}{\end{beamerbox}}
+
+\renewenvironment{alertblock}[1][]{
+	\begin{beamerbox}{awesomehighlight}{#1}
+}{\end{beamerbox}}
 
 \newcommand{\background}[1]{
 	\newcommand{\awesome@background}{#1}
