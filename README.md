@@ -2,7 +2,7 @@
 The kinda awesome beamer theme!
 
 ## Using the theme
-Just copy and paste `beamerthemeawesome.sty` into your project, add `\usetheme{awesome}` into your main file and you're good to go :)
+First of all you will need the [smile](https://github.com/LukasPietzschmann/smile) package. If that's available, just copy and paste `beamerthemeawesome.sty` into your project, add `\usetheme{awesome}` into your main file and you're good to go :)
 
 ## Options
 This theme provides some settings you can tweak:
