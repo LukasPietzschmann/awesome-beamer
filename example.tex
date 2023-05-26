@@ -69,12 +69,12 @@
 \begin{frame}
 	\frametitle{Another Slide}
 	\begin{itemize}
-		\item That info is sooooooo \tikz\node[na] (A) {\gul{important}};
-		\item This is a key \tikz\node[na] (D) {\gul{word}};, isn't it?
+		\item That info is sooooooo \tikz\node[na] (A) {\uline{important}};
+		\item This is a key \tikz\node[na] (D) {\uline{word}};, isn't it?
 	\end{itemize}
 	\vskip2em
 	\uncover<2->{
-		\Rightarrow~Two important \tikz \node[na] (B) {\gul{items}};!
+		\Rightarrow~Two important \tikz \node[na] (B) {\uline{items}};!
 		\begin{tikzpicture}[overlay, remember picture]
 			\draw[textarrow] (A) to [bend left=40] (B);
 			\draw[textarrow] (D) to (B);
@@ -93,18 +93,18 @@
 					remember picture,
 					overlay,
 			]
-				\node[squarenode](P1)[background default draw=black, draw=awesomehighlight, draw on=<3>, yshift=1cm]{P1};
-				\node[squarenode](P2)[right=of P1, background default draw=black, draw=awesomehighlight, draw on=<3>]{P2};
-				\node[squarenode](P3)[right=of P2, background default draw=black, draw=awesomehighlight, draw on=<3>]{P3};
-				\node[squarenode](P4)[right=of P3, background default draw=black, draw=awesomehighlight, draw on=<3>]{P4};
-				\node[squarenode](P5)[right=of P4, background default draw=black, draw=awesomehighlight, draw on=<3>]{P5};
+				\node[squarenode](P1)[background default draw=black, draw=accent, draw on=<3>, yshift=1cm]{P1};
+				\node[squarenode](P2)[right=of P1, background default draw=black, draw=accent, draw on=<3>]{P2};
+				\node[squarenode](P3)[right=of P2, background default draw=black, draw=accent, draw on=<3>]{P3};
+				\node[squarenode](P4)[right=of P3, background default draw=black, draw=accent, draw on=<3>]{P4};
+				\node[squarenode](P5)[right=of P4, background default draw=black, draw=accent, draw on=<3>]{P5};
 				\node[draw=none](etc)[right=of P5]{...};
-				\node[squarenode, draw=awesomehighlight!70, background default draw=black, draw on=<{2,6,7}>, fit=(P1) (P2) (P3) (P4) (P5) (etc)] {};
+				\node[squarenode, draw=accent!70, background default draw=black, draw on=<{2,6,7}>, fit=(P1) (P2) (P3) (P4) (P5) (etc)] {};
 				\node[draw=none] at (6.2, 1.5) {\fontspec{Symbola}\symbol{"1F512}};
 
-				\node[squarenode](N1)[below=of P2, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N1};
-				\node[squarenode](N2)[right=of N1, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N2};
-				\node[squarenode](N3)[right=of N2, background default draw=black, draw=awesomehighlight, draw on=<4>, visible on=<{4-7}>]{N3};
+				\node[squarenode](N1)[below=of P2, background default draw=black, draw=accent, draw on=<4>, visible on=<{4-7}>]{N1};
+				\node[squarenode](N2)[right=of N1, background default draw=black, draw=accent, draw on=<4>, visible on=<{4-7}>]{N2};
+				\node[squarenode](N3)[right=of N2, background default draw=black, draw=accent, draw on=<4>, visible on=<{4-7}>]{N3};
 
 				\node[squarenode](P1p)[below=1.5cm of P1, visible on=<{7-9}>]{P1'};
 				\node[squarenode](P2p)[right=of P1p, visible on=<{7-9}>]{P2'};
@@ -112,10 +112,10 @@
 				\node[squarenode](P4p)[right=of P3p, visible on=<{7-9}>]{P4'};
 				\node[squarenode](P5p)[right=of P4p, visible on=<{7-9}>]{P5'};
 				\node[draw=none, visible on=<{7-9}>](etcp)[right=of P5p]{...};
-				\node[squarenode, draw=awesomegreen, background default draw=black, visible on=<{7-9}>, draw on=<7>, fit=(P1p) (P2p) (P3p) (P4p) (P5p) (etcp)] {};
+				\node[squarenode, draw=green, background default draw=black, visible on=<{7-9}>, draw on=<7>, fit=(P1p) (P2p) (P3p) (P4p) (P5p) (etcp)] {};
 				\node[draw=none, visible on=<{7-9}>] at (6.55, -0.55) {\fontspec{Symbola}\symbol{"1F512}};
 
-				\node[squarenode](S)[below=of N2, background default draw=black, draw=awesomeblue, draw on=<6>, visible on=<6>]{S};
+				\node[squarenode](S)[below=of N2, background default draw=black, draw=blue, draw on=<6>, visible on=<6>]{S};
 
 				\draw[arrow, visible on=<{4-7}>] (P1) -- (N1);
 				\draw[arrow, visible on=<{4-7}>] (P2) -- (N2);

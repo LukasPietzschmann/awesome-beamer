@@ -39,43 +39,23 @@
 \RequirePackage{calc}
 \RequirePackage{microtype}
 \RequirePackage{etoolbox}
-\RequirePackage{contour}
-\RequirePackage[normalem]{ulem}
 \RequirePackage{underscore}
 \RequirePackage{tcolorbox}
-\RequirePackage{hyperref}
-
-\RequirePackage{listings}
-\RequirePackage[verbatim=true]{lstfiracode}
-\lstdefinestyle{animateblocks}{
-	basicstyle=\ttfamily\color{black!20},
-	moredelim=**[is][\only<+>{\color{black}}]{@}{@},
-}
-\lstset{
-	style=FiraCodeStyle,
-	basicstyle=\ttfamily,
-	commentstyle=\color{gray}\itshape,
-	keywordstyle=\bfseries,
-	escapeinside={<!}{!>},
-}
+\RequirePackage[
+	color,
+	minted,
+	tikz,
+	htmlunderline,
+	footnote,
+	hyperref,
+	pdftitle={\noexpand\inserttitle},
+	pdfauthor={\noexpand\insertauthor},
+	pdfsubject={\noexpand\inserttitle}
+]{smile/smile}
 
 \RequirePackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows, arrows.meta, shapes, automata, positioning, positioning, fit, calc, fadings, overlay-beamer-styles, decorations.markings}
+\usetikzlibrary{overlay-beamer-styles, decorations.markings}
 \tikzstyle{every picture}+=[remember picture]
-\tikzstyle{inline} = [shape=rectangle,inner sep=0pt,text depth=0pt]
-\tikzstyle{squarenode} = [rectangle, draw=black, line width=0.6pt]
-\tikzstyle{roundednode} = [squarenode, rounded corners=1mm]
-\tikzstyle{roundnode} = [squarenode, circle]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-\tikzstyle{textarrow} = [awesomegray,shorten >=1mm,shorten <=1mm,thick,->,-{Kite[open]}]
-\tikzstyle{thickarrow} = [
-	thick,
-	decoration={markings, mark=at position 1 with {\arrow[scale=2]{open triangle 60}}},
-	double distance=5pt,
-	shorten >= 13pt,
-	preaction = {decorate},
-	postaction = {draw, line width=5pt, white, shorten >= 7pt}
-]
 
 \tikzset{
 	node distance = 5mm,
@@ -99,14 +79,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\AtEndPreamble{
-	\hypersetup{
-		pdftitle = {\inserttitle},
-		pdfauthor = {\insertauthor},
-		pdfsubject = {\inserttitle}
-	}
-}
-
 \renewcommand{\maketitle}{
 	\begin{frame}[noframenumbering, plain]
 		\titlepage
@@ -119,28 +91,16 @@
 	\fi
 }
 
-\renewcommand{\ULdepth}{1.8pt}
-\contourlength{0.8pt}
-\newcommand{\gul}[1]{%
-	\uline{\phantom{#1}}%
-	\llap{\contour{white}{#1}}%
-}
-
-
-\renewcommand{\textsubscript}[1]{%
-	\scalebox{0.7}{#1}
-}
-
 \let\oldft\frametitle
 \renewcommand\frametitle[2][]{
 	\ifx\relax#1\relax\oldft{#2}\else%
-		\oldft{#2\hfill\normalfont\large\color{awesomegray}\raisebox{0.3ex}{#1}}%
+		\oldft{#2\hfill\normalfont\large\color{darkgray}\raisebox{0.3ex}{#1}}%
 	\fi
 }
 
 \BeforeBeginEnvironment{tabular}{
 	\renewcommand{\arraystretch}{1.1}
-	\rowcolors{2}{awesomelightgray}{white}
+	\rowcolors{2}{lightgray}{white}
 }
 
 
@@ -240,35 +200,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\definecolor{awesomeblack}{HTML}{241f31}
-\definecolor{awesomemarroon}{HTML}{63452c}
-\definecolor{awesomegray}{HTML}{77767b}
-\definecolor{awesomelightgray}{HTML}{f6f5f4}
-\definecolor{awesomewhite}{HTML}{ffffff}
-\definecolor{awesomeblue}{HTML}{1c71d8}
-\definecolor{awesomegreen}{HTML}{26a269}
-\definecolor{awesomehighlight}{HTML}{ae3342}
-\definecolor{awesomehighlightlight}{HTML}{c85250}
+\setbeamercolor{alerted text}{fg=accent}
 
-\setbeamercolor{alerted text}{fg=awesomehighlight}
+\setbeamercolor{subtitle}{fg=darkgray}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{framesubtitle}{fg=darkgray}
 
-\setbeamercolor{subtitle}{fg=awesomegray}
-\setbeamercolor{frametitle}{fg=awesomeblack}
-\setbeamercolor{framesubtitle}{fg=awesomegray}
+\setbeamercolor{details}{fg=black}
+\setbeamercolor{author}{fg=black}
 
-\setbeamercolor{details}{fg=awesomeblack}
-\setbeamercolor{author}{fg=awesomeblack}
+\setbeamercolor{section number projected}{bg=black, fg=accent}
+\setbeamercolor{subsection number projected}{fg=lightgray, fg=accent}
 
-\setbeamercolor{section number projected}{bg=awesomeblack, fg=awesomehighlight}
-\setbeamercolor{subsection number projected}{fg=awesomelightgray, fg=awesomehighlightlight}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{separator}{fg=marroon, bg=marroon}
+\setbeamercolor{footline}{bg=lightgray}
 
-\setbeamercolor{structure}{fg=awesomeblack}
-\setbeamercolor{normal text}{fg=awesomeblack}
-\setbeamercolor{separator}{fg=awesomemarroon, bg=awesomemarroon}
-\setbeamercolor{footline}{bg=awesomelightgray}
-
-\setbeamercolor{block body}{bg=awesomelightgray}
-\setbeamercolor{block title}{bg=awesomeblack, fg=awesomewhite}
+\setbeamercolor{block body}{bg=lightgray}
+\setbeamercolor{block title}{bg=black, fg=white}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -388,48 +338,29 @@
 \newtcolorbox{beamerbox}[2]{IfBlankTF={#2}{toprule=2mm}{title=#2},colback=#1!5!white,colframe=#1!75!black}
 
 \renewenvironment{definition}[1][\empty]{
-	\begin{beamerbox}{awesomemarroon}{#1}
+	\begin{beamerbox}{marroon}{#1}
 }{\end{beamerbox}}
 
 \renewenvironment{block}[1][]{
-	\begin{beamerbox}{awesomeblue}{#1}
+	\begin{beamerbox}{blue}{#1}
 }{\end{beamerbox}}
 
 \renewenvironment{examples}[1][]{
-	\begin{beamerbox}{awesomegreen}{#1}
+	\begin{beamerbox}{green}{#1}
 }{\end{beamerbox}}
 
 \renewenvironment{alertblock}[1][]{
-	\begin{beamerbox}{awesomehighlight}{#1}
+	\begin{beamerbox}{red}{#1}
 }{\end{beamerbox}}
 
-\newcommand{\background}[1]{
-	\newcommand{\awesome@background}{#1}
-}
 
-\newcommand{\email}[1]{
-	\newcommand{\awesome@email}{#1}
-}
-
-\newcommand{\insertemail}[0]{
-	\href{mailto:\awesome@email}{\awesome@email}
-}
-
-\newcommand{\uni}[1]{
-	\newcommand{\awesome@uni}{#1}
-}
-
-\newcommand{\insertuni}[0]{
-	\awesome@uni
-}
-
-\newcommand{\location}[1]{
-	\newcommand{\awesome@location}{#1}
-}
-
-\newcommand{\insertlocation}[0]{
-	\awesome@location
-}
+\ensureinfocommand{background}
+\ensureinfocommand{email}
+\ensureinfocommand{uni}
+\ensureinfocommand{location}
+\newcommand{\insertemail}[0]{\href{mailto:\@email}{\@email}}
+\newcommand{\insertuni}[0]{\@uni}
+\newcommand{\insertlocation}[0]{\@location}
 
 \tikzfading[
 	name=title page picture fading,
@@ -473,7 +404,7 @@
 		\insertdate
 	\end{minipage}
 
-	\ifdefined\awesome@background
+	\ifdefined\@background
 		\begin{tikzpicture}[remember picture, overlay]
 			\clip (current page.south east)
 				-- (current page.north east)
@@ -486,7 +417,7 @@
 				inner sep=0,
 				outer sep=0
 			] at (current page.south east) {
-				\includegraphics[height=\paperheight]{\awesome@background}
+				\includegraphics[height=\paperheight]{\@background}
 			};
 
 			\fill[
@@ -543,7 +474,7 @@
 				\fi%
 			\fi%
 			\hfill%
-			\colorbox{awesomehighlight}{
+			\colorbox{accent}{
 				\color{white}
 				\hspace{0.3cm}
 				\ifawesome@english@
@@ -575,7 +506,7 @@
 			\hfill%
 			\hyperlinkdocumentstart{\inserttitle}%
 			\hfill%
-			\colorbox{awesomehighlight}{
+			\colorbox{accent}{
 				\color{white}
 				\hspace{0.3cm}%
 				Agenda
@@ -603,7 +534,7 @@
 			\hfill%
 			\hyperlinkdocumentstart{\inserttitle}%
 			\hfill%
-			\colorbox{awesomehighlight}{
+			\colorbox{accent}{
 				\color{white}
 				\hspace{0.3cm}%
 				\ifawesome@english@
@@ -677,7 +608,7 @@
 }
 
 \AtEndDocument{
-	{\setbeamercolor{background canvas}{bg=awesomehighlight!70!black}
+	{\setbeamercolor{background canvas}{bg=accent!70!black}
 	\begin{frame}[b, noframenumbering]
 		\color{white}
 		\thispagestyle{navigation@titlepage}
