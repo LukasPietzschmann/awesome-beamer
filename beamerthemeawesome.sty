@@ -354,13 +354,19 @@
 }{\end{beamerbox}}
 
 
+\ensureinfocommand{title}
+\ensureinfocommand{author}
 \ensureinfocommand{background}
 \ensureinfocommand{email}
 \ensureinfocommand{uni}
 \ensureinfocommand{location}
-\newcommand{\insertemail}[0]{\href{mailto:\@email}{\@email}}
-\newcommand{\insertuni}[0]{\@uni}
-\newcommand{\insertlocation}[0]{\@location}
+\renewcommand\inserttitle{\@title}
+\renewcommand\insertshorttitle{\@shorttitle}
+\renewcommand\insertauthor{\@author}
+\renewcommand\insertshortauthor{\@shortauthor}
+\newcommand\insertemail[0]{\href{mailto:\@email}{\@email}}
+\newcommand\insertuni[0]{\@uni}
+\newcommand\insertlocation[0]{\@location}
 
 \tikzfading[
 	name=title page picture fading,
@@ -444,9 +450,9 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\insertauthor~%
+			\insertshortauthor~%
 			\hfill%
-			\hyperlinkdocumentstart{\inserttitle}\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
+			\hyperlinkdocumentstart{\insertshorttitle}\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
 			\ifx\insertsubsection\empty
 				\hspace{.4em}%
 				\ifnum\framespersection>1%
@@ -502,9 +508,9 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\insertauthor%
+			\insertshortauthor%
 			\hfill%
-			\hyperlinkdocumentstart{\inserttitle}%
+			\hyperlinkdocumentstart{\insertshorttitle}%
 			\hfill%
 			\colorbox{accent}{
 				\color{white}
@@ -530,9 +536,9 @@
 			dp=1ex
 		]{footline}%
 			\hspace{0.3cm}%
-			\insertauthor%
+			\insertshortauthor%
 			\hfill%
-			\hyperlinkdocumentstart{\inserttitle}%
+			\hyperlinkdocumentstart{\insertshorttitle}%
 			\hfill%
 			\colorbox{accent}{
 				\color{white}
