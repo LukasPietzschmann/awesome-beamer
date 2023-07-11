@@ -221,7 +221,7 @@
 
 \setbeamercolor{structure}{fg=black}
 \setbeamercolor{normal text}{fg=black}
-\setbeamercolor{separator}{fg=maroon, bg=maroon}
+\setbeamercolor{separator}{fg=accent, bg=accent}
 \setbeamercolor{footline}{bg=lightgray}
 
 \setbeamercolor{block body}{bg=lightgray}
@@ -306,7 +306,7 @@
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{itemize subitem}[circle]
 
-\setbeamertemplate{frametitle continuation}{}
+\addtobeamertemplate{frametitle continuation}{\color{gray}(}{)}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{headline}{}
 
@@ -395,7 +395,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 		\raggedright
 		\usebeamerfont{title}
 		\usebeamercolor[fg]{title}
-		\inserttitle\\
+		\parbox{.75\textwidth}{\inserttitle}\\
 		\usebeamerfont{subtitle}
 		\usebeamercolor[fg]{subtitle}
 		\insertsubtitle
