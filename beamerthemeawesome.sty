@@ -43,6 +43,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{underscore}
 \RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
 \RequirePackage[
 	color,
 	minted,
@@ -62,7 +63,11 @@
 \tikzset{
 	node distance = 5mm,
 	invisible/.style={opacity=0},
+	muted/.style={opacity=0.3},
 	visible on/.style={alt={#1{}{invisible}}},
+	hidden on/.style={alt={#1{invisible}{}}},
+	muted on/.style={alt={#1{muted}{}}},
+	unmuted on/.style={alt={#1{}{muted}}},
 	alt/.code args={<#1>#2#3}{%
 		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
 	},
@@ -337,7 +342,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtcolorbox{beamerbox}[2]{IfBlankTF={#2}{toprule=2mm}{title=#2},colback=#1!5!white,colframe=#1!75!black}
+\newtcolorbox{beamerbox}[2]{boxrule=\smile@linewidth,
+IfBlankTF={#2}{toprule=2mm}{title=#2},colback=#1!5!white,colframe=#1!75!black,left=0em,
+lefttitle=4mm, arc=\smile@rounding, enhanced, segmentation engine=path,
+segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewidth}}
 
 \renewenvironment{definition}[1][\empty]{
 	\begin{beamerbox}{maroon}{#1}
