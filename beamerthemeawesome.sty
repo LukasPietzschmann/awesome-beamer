@@ -389,34 +389,29 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 	\@nameuse{ps@navigation}
 }
 
+\newlength\lhswidth\setlength{\lhswidth}{.55\textwidth}
+\newlength\titlewidth
+\newlength\subtitlewidth
+\newlength\maxwidth
 \setbeamertemplate{title page}{%
-	\thispagestyle{navigation@titlepage}
-	\begin{minipage}{.8\textwidth}
-		\raggedright
-		\usebeamerfont{title}
-		\usebeamercolor[fg]{title}
-		\parbox{.75\textwidth}{\inserttitle}\\
-		\usebeamerfont{subtitle}
-		\usebeamercolor[fg]{subtitle}
-		\insertsubtitle
-
-		\usebeamertemplate{separator}
-
-		\usebeamerfont{author}
-		\usebeamercolor[fg]{author}
-		\vspace{2em}
+	\def\titlecontent{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}%
+	\def\subtitlecontent{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}%
+	\settowidth\titlewidth\titlecontent%
+	\settowidth\subtitlewidth\subtitlecontent%
+	\setlength\maxwidth{\ifdim\titlewidth>\subtitlewidth\titlewidth\else\subtitlewidth\fi}%
+	\thispagestyle{navigation@titlepage}%
+	\begin{minipage}{\lhswidth}
+		\raggedright%
+		\titlecontent\\
+		\subtitlecontent\\
+		\textcolor{accent}{\rule{\ifdim\maxwidth<\lhswidth\maxwidth\else\lhswidth\fi}{\smile@linewidth}}\\[2em]
+		\usebeamerfont{author}\usebeamercolor[fg]{author}%
 		\insertauthor\\
-		\usebeamerfont{details}
-		\usebeamercolor[fg]{details}
-		\insertemail
-
-		\vspace{2em}
-		\usebeamerfont{details}
-		\usebeamercolor[fg]{details}
+		\usebeamerfont{details}\usebeamercolor[fg]{details}%
+		\insertemail\\[2em]
+		\usebeamerfont{details}\usebeamercolor[fg]{details}%
 		\insertinstitute\\
-		\insertuni
-
-		\vspace{2em}
+		\insertuni\\[2em]
 		\insertdate
 	\end{minipage}
 
@@ -624,7 +619,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 }
 
 \AtEndDocument{
-	{\setbeamercolor{background canvas}{bg=accent!70!black}
+	{\setbeamercolor{background canvas}{bg=accent}
 	\begin{frame}[b, noframenumbering]
 		\color{white}
 		\thispagestyle{navigation@titlepage}
