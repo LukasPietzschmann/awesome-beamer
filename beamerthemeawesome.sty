@@ -381,7 +381,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 \renewcommand\insertshortauthor{\ifdefined\@shortauthor\@shortauthor\fi}
 \newcommand\insertemail[0]{\ifdefined\@email\href{mailto:\@email}{\@email}\fi}
 \newcommand\insertuni[0]{\ifdefined\@uni\@uni\fi}
-\newcommand\insertlocation[0]{\ifdefined\@location}
+\newcommand\insertlocation[0]{\ifdefined\@location\@location\fi}
 
 \tikzfading[
 	name=title page picture fading,
