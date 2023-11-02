@@ -375,13 +375,13 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 \ensureinfocommand{email}
 \ensureinfocommand{uni}
 \ensureinfocommand{location}
-\renewcommand\inserttitle{\@title}
-\renewcommand\insertshorttitle{\@shorttitle}
-\renewcommand\insertauthor{\@author}
-\renewcommand\insertshortauthor{\@shortauthor}
-\newcommand\insertemail[0]{\href{mailto:\@email}{\@email}}
-\newcommand\insertuni[0]{\@uni}
-\newcommand\insertlocation[0]{\@location}
+\renewcommand\inserttitle{\ifdefined\@title\@title\fi}
+\renewcommand\insertshorttitle{\ifdefined\@shorttitle\@shorttitle\fi}
+\renewcommand\insertauthor{\ifdefined\@author\@author\fi}
+\renewcommand\insertshortauthor{\ifdefined\@shortauthor\@shortauthor\fi}
+\newcommand\insertemail[0]{\ifdefined\@email\href{mailto:\@email}{\@email}\fi}
+\newcommand\insertuni[0]{\ifdefined\@uni\@uni\fi}
+\newcommand\insertlocation[0]{\ifdefined\@location}
 
 \tikzfading[
 	name=title page picture fading,
