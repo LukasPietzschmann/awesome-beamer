@@ -2,16 +2,17 @@
 
 \usepackage{lipsum}
 
-\usetheme[english, secslide, subsecslide, coloraccent=blue]{awesome}
+\definecolor{dblue}{HTML}{11235A}
+\usetheme[english, secslide, subsecslide, coloraccent=dblue]{awesome}
 
 \title{Test Presentation}
 \author[Luke]{Lukas Pietzschmann}
 \subtitle{To illustrate this awesome theme}
 \email{lukas.pietzschmann@uni-ulm.de}
-\institute{Institute of Software Engineering and\\Programming Languages}
-\uni{University of Ulm}
+\institute{Cool Institute}
+\uni{World University}
 \location{Ulm}
-\date{\today}
+\date\today
 \background{background.png}
 
 \begin{document}
@@ -20,6 +21,7 @@
 
 \section{Section 1}
 \begin{frame}[fragile]
+	\begin{wide}
 	\frametitle{Boxes}
 	\begin{columns}[t]
 		\begin{column}{0.45\textwidth}
@@ -45,15 +47,16 @@
 			\end{definition}
 		\end{column}
 	\end{columns}
+	\end{wide}
 \end{frame}
 \begin{frame}
 	\frametitle[Another Title]{Example Slide}
 	\framesubtitle{With a subtitle}
 	\begin{columns}[t]
-		\begin{column}{0.45\textwidth}
+		\begin{column}{0.65\textwidth}
 			\lipsum[1][1-5]
 		\end{column}
-		\begin{column}{0.45\textwidth}
+		\begin{column}{0.25\textwidth}
 			\textbf{Items:}
 			\begin{itemize}
 				\item Item 1
@@ -87,7 +90,7 @@
 \section{Section 2}
 \subsection{Subsection 1}
 \begin{frame}
-	\frametitle{Cool picture}
+	\frametitle[That's somehow broken]{Cool picture}
 	\framesubtitle{With animations}
 	\begin{columns}
 		\begin{column}{0.45\textwidth}

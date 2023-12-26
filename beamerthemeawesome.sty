@@ -305,6 +305,7 @@
 
 
 \setbeamersize{description width=0.5cm}
+\setbeamersize{sidebar width left=0.15\paperwidth}
 
 \setbeamertemplate{caption}{\insertcaption}
 \setbeamertemplate{blocks}[rounded][shadow=false]
@@ -321,6 +322,10 @@
 	\usebeamercolor[fg]{normal text}
 	~\inserttocsection
 }
+
+\newenvironment{wide}{\begingroup\leavevmode
+\hspace*{-2cm}\fboxsep\z@\minipage{\linewidth+2cm}%
+}{\endminipage\endgroup}
 
 \setbeamertemplate{subsection in toc}{
 	\mbox{
@@ -340,9 +345,22 @@
 }
 
 \setbeamertemplate{frametitle}{
-	\vskip1em\par
-	\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par
-	\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par
+	\vspace{1em}%
+	\beamercolorbox[leftskip=-\beamer@leftsidebar]{frametitle}%
+	\strut\usebeamerfont{frametitle}\parbox{\dimexpr\beamer@leftsidebar}{\strut%
+	\ifx\insertsection\empty\else%
+		\color{accent}\thesection.%
+		\ifx\insertsubsection\empty%
+			\ifnum\framespersection>1%
+				\color{black!25!white}\scalebox{.7}{\theframesinsection}%
+			\fi%
+		\else%
+			\thesubsection.\color{black!25!white}%
+			\ifnum\framespersubsection>1%
+				\scalebox{.7}{\theframesinsubsection}%
+			\fi%
+		\fi%
+	\fi}\insertframetitle\endbeamercolorbox
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -399,6 +417,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 \newlength\subtitlewidth
 \newlength\maxwidth
 \setbeamertemplate{title page}{%
+	\begin{wide}
 	\def\titlecontent{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}%
 	\def\subtitlecontent{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}%
 	\settowidth\titlewidth\titlecontent%
@@ -445,6 +464,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 			++(-10, \dimexpr\paperheight+1cm);
 		\end{tikzpicture}
 	\fi
+	\end{wide}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -597,12 +617,14 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 	\ifawesome@secslide
 		\begin{frame}[c, noframenumbering]
 			\thispagestyle{navigation@sec}%
+			\begin{wide}
 			\centering%
 			\usebeamerfont{title}%
 			\usebeamercolor[fg]{section number projected}%
 			\scalebox{1.3}{ \raisebox{-1pt}{\insertsectionnumber}}.~%
 			\usebeamercolor[fg]{title}%
-			\insertsectionhead\par
+			\insertsectionhead
+			\end{wide}
 		\end{frame}
 	\fi
 }
@@ -611,6 +633,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 	\ifawesome@subsecslide
 		\begin{frame}[c, noframenumbering]
 			\thispagestyle{navigation@sec}%
+			\begin{wide}
 			\centering%
 			\usebeamerfont{title}%
 			\usebeamercolor[fg]{section number projected}%
@@ -618,7 +641,8 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 			\usebeamercolor[fg]{subsection number projected}%
 			\textsubscript{\insertsubsectionnumber}~%
 			\usebeamercolor[fg]{title}%
-			\insertsubsectionhead\par
+			\insertsubsectionhead
+			\end{wide}
 		\end{frame}
 	\fi
 }
@@ -626,6 +650,7 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 \AtEndDocument{
 	{\setbeamercolor{background canvas}{bg=accent}
 	\begin{frame}[b, noframenumbering]
+		\begin{wide}
 		\color{white}
 		\thispagestyle{navigation@titlepage}
 		\Large\textbf{\insertauthor}
@@ -633,5 +658,6 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 		\scriptsize\insertlocation,~\insertdate
 		\hfill
 		\insertemail
+		\end{wide}
 	\end{frame}}
 }
