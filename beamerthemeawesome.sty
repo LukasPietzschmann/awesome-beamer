@@ -431,32 +431,36 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 	\end{beamercolorbox}%
 }}
 
+\def\awesome@smalldot{\tikz[baseline=-.5ex]\node[circle,inner sep=0.16,draw=black,fill=black]{};}
+\def\awesome@fulldot{\tikz[baseline=-.6ex]\node[circle,inner sep=0.32ex,draw=black,fill=black]{};}
+\def\awesome@emptydot{\tikz[baseline=-.6ex]\node[circle,inner sep=0.32ex,draw=black,fill=none]{};}
+
 \newcounter{pagenumbertolinkto}
 \setbeamertemplate{footline}{%
 	\setfooter{\insertshortauthor}{%
-		\hyperlinkdocumentstart{\insertshorttitle}\hspace{.7em}$\cdot$\hspace{.7em}\insertsection%
+		\hyperlinkdocumentstart{\insertshorttitle}\hspace{.7em}\awesome@smalldot\hspace{.7em}\insertsection%
 		\ifx\insertsubsection\empty%
 			\hspace{.4em}%
 			\ifnum\framespersection>1%
 				\foreach \i in {1, ..., \framespersection}{%
 					\ifnum \i=\theframesinsection%
-						~$\bullet$%
+						~\awesome@fulldot%
 					\else%
 						\setcounter{pagenumbertolinkto}{\i + \insertsectionstartframe}%
-						~\hyperlink{page:\thepagenumbertolinkto}{$\circ$}%
+						~\hyperlink{page:\thepagenumbertolinkto}{\awesome@emptydot}%
 					\fi%
 				}%
 			\fi%
 		\else%
-			\hspace{.7em}$\cdot$\hspace{.7em}\insertsubsection%
+			\hspace{.7em}\awesome@smalldot\hspace{.7em}\insertsubsection%
 			\hspace{.7em}%
 			\ifnum\framespersubsection>1%
 				\foreach \i in {1, ..., \framespersubsection}{%
 					\ifnum \i=\theframesinsubsection%
-						~$\bullet$%
+						~\awesome@fulldot%
 					\else%
 						\setcounter{pagenumbertolinkto}{\i + \insertsubsectionstartframe}%
-						~\hyperlink{page:\thepagenumbertolinkto}{$\circ$}%
+						~\hyperlink{page:\thepagenumbertolinkto}{\awesome@emptydot}%
 					\fi%
 				}%
 			\fi%
