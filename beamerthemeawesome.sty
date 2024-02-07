@@ -301,22 +301,28 @@
 }
 
 \setbeamertemplate{frametitle}{%
-	\vspace{1em}%
-	\beamercolorbox[leftskip=-\beamer@leftsidebar]{frametitle}%
-	\strut\usebeamerfont{frametitle}\parbox{\dimexpr\beamer@leftsidebar}{\strut%
-	\ifx\insertsection\empty\else%
-		\color{accent}\thesection.%
-		\ifx\insertsubsection\empty%
-			\ifnum\framespersection>1%
-				\color{black!25!white}\scalebox{.7}{\theframesinsection}%
+	\vspace{1em}\hspace{-\beamer@leftsidebar}\begin{beamercolorbox}[wd=\beamer@leftsidebar]{frametitle}%
+		\ifx\insertsection\empty\else%
+			\color{accent}\thesection.%
+			\ifx\insertsubsection\empty%
+				\ifnum\framespersection>1%
+					\color{black!25!white}\scalebox{.7}{\theframesinsection}%
+				\fi%
+			\else%
+				\thesubsection.\color{black!25!white}%
+				\ifnum\framespersubsection>1%
+					\scalebox{.7}{\theframesinsubsection}%
+				\fi%
 			\fi%
-		\else%
-			\thesubsection.\color{black!25!white}%
-			\ifnum\framespersubsection>1%
-				\scalebox{.7}{\theframesinsubsection}%
-			\fi%
-		\fi%
-	\fi}\insertframetitle\endbeamercolorbox%
+		\fi
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}{frametitle}%
+		\insertframetitle%
+	\end{beamercolorbox}
+	\ifx\insertframesubtitle\empty\else%
+	\begin{beamercolorbox}{framesubtitle}%
+		\usebeamerfont{subtitle}\insertframesubtitle%
+	\end{beamercolorbox}\fi%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
