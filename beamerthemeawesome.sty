@@ -84,7 +84,9 @@
 \let\oldft\frametitle
 \renewcommand\frametitle[2][]{%
 	\ifx\relax#1\relax\oldft{#2}\else%
-		\oldft{#2\hfill\normalfont\large\color{darkgray}\raisebox{0.3ex}{#1}}%
+		\ifnum\beamer@autobreakcount>0\oldft[#1]{#2}\else%
+			\oldft{#2\hfill\normalfont\large\color{darkgray}\raisebox{0.3ex}{#1}}%
+		\fi%
 	\fi%
 }
 
