@@ -342,7 +342,7 @@
 	\end{beamercolorbox}
 	\ifx\insertframesubtitle\empty\else%
 	\begin{beamercolorbox}{framesubtitle}%
-		\usebeamerfont{subtitle}\insertframesubtitle%
+		\ifawesome@nonumbersinframetitle\ifbool{wideframe}{\hspace{-\awesome@sidebarwidth}}{}\fi\usebeamerfont{subtitle}\insertframesubtitle%
 	\end{beamercolorbox}\fi%
 }
 
