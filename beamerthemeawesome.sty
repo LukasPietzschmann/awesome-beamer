@@ -15,6 +15,7 @@
 \DeclareBoolOption{notoc}
 \DeclareBoolOption{secslide}
 \DeclareBoolOption{subsecslide}
+\DeclareBoolOption{nonumbersinframetitle}
 
 \DeclareDefaultOption{\PassOptionsToPackage{\CurrentOption}{smile}}
 
@@ -91,6 +92,19 @@
 }
 
 \BeforeBeginEnvironment{tabular}{\def\arraystretch{1.1}\rowcolors{2}{lightgray}{white}}
+
+\providebool{wideframe}
+\define@key{beamerframe}{wide}[true]{
+	\booltrue{wideframe}
+	\begingroup
+}
+
+\apptocmd{\beamer@reseteecodes}{%
+	\ifbool{wideframe}{%
+		\endgroup
+		\boolfalse{wideframe}
+	}{}
+}{}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -269,8 +283,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\newlength\awesome@sidebarwidth\setlength{\awesome@sidebarwidth}{0.15\paperwidth}
+\newlength\awesome@textmargin\setlength{\awesome@textmargin}{0.05\paperwidth}
 \setbeamersize{description width=0.5cm}
-\setbeamersize{sidebar width left=0.15\paperwidth}
+\setbeamersize{sidebar width left=\awesome@sidebarwidth}
+\setbeamersize{sidebar width right=\z@}
+\setbeamersize{text margin left=\awesome@textmargin}
+\setbeamersize{text margin right=\awesome@textmargin}
 
 \setbeamertemplate{caption}{\insertcaption}
 \setbeamertemplate{blocks}[rounded][shadow=false]
@@ -287,7 +306,7 @@
 }
 
 \newenvironment{wide}{\begingroup\leavevmode%
-	\hspace*{-2cm}\fboxsep\z@\minipage{\linewidth+2cm}%
+	\hspace*{-\awesome@sidebarwidth}\fboxsep\z@\minipage{\linewidth+2cm}%
 }{\endminipage\endgroup}
 
 \setbeamertemplate{subsection in toc}{%
@@ -303,7 +322,7 @@
 }
 
 \setbeamertemplate{frametitle}{%
-	\vspace{1em}\hspace{-\beamer@leftsidebar}\begin{beamercolorbox}[wd=\beamer@leftsidebar]{frametitle}%
+	\vspace{1em}\ifawesome@nonumbersinframetitle\ifbool{wideframe}{\hspace{-\awesome@sidebarwidth}}{}\else\hspace{-\awesome@sidebarwidth}\begin{beamercolorbox}[wd=\awesome@sidebarwidth]{frametitle}%
 		\ifx\insertsection\empty\else%
 			\color{accent}\thesection.%
 			\ifx\insertsubsection\empty%
@@ -317,7 +336,7 @@
 				\fi%
 			\fi%
 		\fi
-	\end{beamercolorbox}%
+	\end{beamercolorbox}\fi%
 	\begin{beamercolorbox}{frametitle}%
 		\insertframetitle%
 	\end{beamercolorbox}
