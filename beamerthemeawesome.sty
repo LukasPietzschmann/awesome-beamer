@@ -28,7 +28,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\RequirePackage{fontspec}
 \RequirePackage{calc}
 \RequirePackage{microtype}
 \RequirePackage{etoolbox}
@@ -57,14 +56,6 @@
 		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
 	},
 }
-
-\RequirePackage[
-	backend=biber,
-	style=alphabetic,
-	sorting=ynt
-]{biblatex}
-\RequirePackage[strict, autostyle]{csquotes}
-\nocite{*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -210,19 +201,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\setsansfont[
-	Ligatures=TeX,
-	BoldFont={* Medium},
-]{Fira Sans}
-\setmonofont[
-	Path = ./fonts/,
-	Scale = .9,
-	Extension = .ttf,
-	Contextuals=Alternate,
-	BoldFont={*-Bold},
-	UprightFont={*-Regular},
-]{Fira Code}
 
 \setbeamerfont{title}{
 	size=\LARGE,
