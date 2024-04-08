@@ -19,7 +19,11 @@ If you're using latexmk you don't have to do this manually as latexmk can figure
 
 
 ## Example slides
-![example.pdf](https://github.com/LukasPietzschmann/awesome-beamer/blob/master/example.pdf)
+I already prepared many presentations using this style. Here are some examples:
+- [Hydrogen is an energy carrier](https://raw.githubusercontent.com/LukasPietzschmann/hydrogen-energy/build/talk.pdf) ([Repo](https://github.com/LukasPietzschmann/hydrogen-energy))
+- [Building a dataflow graph for java](https://github.com/LukasPietzschmann/java-dataflow-graph/files/13249805/main.pdf) ([Repo](https://github.com/LukasPietzschmann/java-dataflow-graph))
+- [Distributed configuration stores](https://github.com/LukasPietzschmann/Configuration-Stores/files/12793983/main.pdf) ([Repo](https://github.com/LukasPietzschmann/Configuration-Stores))
+- [SIMD intrinsics](https://github.com/LukasPietzschmann/SIMD-Intrinsics/files/12775327/talk.pdf) ([Repo](https://github.com/LukasPietzschmann/SIMD-Intrinsics))
 
 ## Related stuff
 If you're looking for other LaTeX classes in the same style, you may want to take a look at this repo: [tex-classes](https://github.com/LukasPietzschmann/tex-classes).
