@@ -423,14 +423,20 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newlength\maxfooterwd\maxfooterwd=0pt
+\def\updatemaxfooterwd#1{\ifdim#1>\maxfooterwd%
+	\global\maxfooterwd=#1%
+	\immediate\write\@auxout{\global\maxfooterwd=\the#1}%
+\fi}
 \newsavebox\footerright
-\def\setfooter#1#2#3{\savebox\footerright{\color{white}\hspace{0.3cm}#3\hspace{0.3cm}}\leavevmode\hbox{%
+\def\setfooter#1#2#3{\savebox\footerright{\color{white}\hspace{0.3cm}#3\hspace{0.3cm}}
+	\updatemaxfooterwd{\wd\footerright}\leavevmode\hbox{%
 	\usebeamerfont{footline}%
-	\begin{beamercolorbox}[wd=\dimexpr\textwidth-\wd\footerright\relax,ht=2.5ex,dp=1ex]{footline}%
+	\begin{beamercolorbox}[wd=\dimexpr\textwidth-\maxfooterwd\relax,ht=2.5ex,dp=1ex]{footline}%
 		\hspace{0.3cm}#1\hfill#2\hfill\null%
 	\end{beamercolorbox}%
-	\begin{beamercolorbox}[wd=\wd\footerright,ht=2.5ex,dp=1ex]{footlineright}%
-		\usebox\footerright%
+	\begin{beamercolorbox}[wd=\maxfooterwd,ht=2.5ex,dp=1ex]{footlineright}%
+		\centerline{\usebox\footerright}%
 	\end{beamercolorbox}%
 }}
 
