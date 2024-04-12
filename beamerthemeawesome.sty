@@ -300,15 +300,15 @@
 \setbeamertemplate{frametitle}{%
 	\vspace{1em}\ifawesome@nonumbersinframetitle\ifbool{wideframe}{\hspace{-\awesome@sidebarwidth}}{}\else\hspace{-\awesome@sidebarwidth}\begin{beamercolorbox}[wd=\awesome@sidebarwidth]{frametitle}%
 		\ifx\insertsection\empty\else%
-			\color{accent}\thesection.%
+			\color{accent}\thesection%
 			\ifx\insertsubsection\empty%
 				\ifnum\framespersection>1%
-					\color{black!25!white}\scalebox{.7}{\theframesinsection}%
+					.\color{black!25!white}\scalebox{.7}{\theframesinsection}%
 				\fi%
 			\else%
-				\thesubsection.\color{black!25!white}%
+				.\thesubsection%
 				\ifnum\framespersubsection>1%
-					\scalebox{.7}{\theframesinsubsection}%
+					.\color{black!25!white}\scalebox{.7}{\theframesinsubsection}%
 				\fi%
 			\fi%
 		\fi
