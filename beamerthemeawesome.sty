@@ -53,6 +53,9 @@
 	alt/.code args={<#1>#2#3}{%
 		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
 	},
+	modal background/.style={fill=gray,opacity=0.8},
+	modal box/.style={draw=black,rnd,fill=white,lw,shadow,inner sep=3mm,text width=0.66\paperwidth},
+	modal title/.style={roundednode,fill=black,text=white}
 }
 
 
@@ -345,6 +348,18 @@ segmentation style={solid, shorten >=1mm,shorten <=1mm, line width=\smile@linewi
 	\begin{beamerbox}{red}{#1}%
 }{\end{beamerbox}}
 
+\newenvironment<>{modal}[1][]{%
+	\def\titlename{#1}%
+	\onlyenv#2%
+	\begin{tikzpicture}[o,node distance=0pt]%
+		\fill[modal background] (current page.south west) rectangle (current page.north east);%
+		\node[modal box] at (current page) (MODALCONTENT) \bgroup%
+}{%
+		\egroup;%
+		\if\expandafter\isempty\expandafter{\titlename}\else\node[modal title] at (MODALCONTENT.north) {\titlename};\fi
+	\end{tikzpicture}%
+	\endonlyenv%
+}
 
 \ensureinfocommand{title}
 \ensureinfocommand{author}
