@@ -350,7 +350,7 @@ segmentation style={lcr, solid, shorten >=1mm,shorten <=1mm, line width=\smile@l
 
 \newenvironment<>{modal}[1][]{%
 	\def\titlename{#1}%
-	\onlyenv#2%
+	\visibleenv#2%
 	\begin{tikzpicture}[o,node distance=0pt]%
 		\fill[modal background] (current page.south west) rectangle (current page.north east);%
 		\node[modal box] at (current page) (MODALCONTENT) \bgroup%
@@ -358,7 +358,7 @@ segmentation style={lcr, solid, shorten >=1mm,shorten <=1mm, line width=\smile@l
 		\egroup;%
 		\if\expandafter\isempty\expandafter{\titlename}\else\node[modal title] at (MODALCONTENT.north) {\titlename};\fi
 	\end{tikzpicture}%
-	\endonlyenv%
+	\endvisibleenv%
 }
 
 \ensureinfocommand{title}
