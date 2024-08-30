@@ -410,29 +410,23 @@ segmentation style={lcr, solid, shorten >=1mm,shorten <=1mm, line width=\smile@l
 	\end{minipage}
 
 	\ifdefined\@background
-		\begin{tikzpicture}[remember picture, overlay]
+		\begin{tikzpicture}[o]
 			\clip (current page.south east)
 				-- (current page.north east)
 				-- ++(-5.1, 0)
 				-- ++(-3, -\paperheight)
 				-- cycle;
 
-			\node[
-				anchor=south east,
-				inner sep=0,
-				outer sep=0
-			] at (current page.south east) {
+			\node[anchor=south east,inner sep=0,outer sep=0] at (current page.south east) {
 				\includegraphics[height=\paperheight]{\@background}
 			};
 
-			\fill[
-				black, path fading=title page picture fading,
-				fading angle=-15
-			]
-			(current page.south east)
-			rectangle
-			++(-10, \dimexpr\paperheight+1cm);
+			\fill[black,path fading=title page picture fading,fading angle=-15]
+				(current page.south east) rectangle ++(-10, \dimexpr\paperheight+1cm);
 		\end{tikzpicture}
+		\tikz[o]\draw[black,lcr,line width=2*\smile@linewidth]
+			([shift={(-5.1,0)}]current page.north east)
+			-- ++(-3,-\paperheight);
 	\fi
 \end{wide}}
 
