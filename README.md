@@ -21,6 +21,7 @@ If you're using latexmk you don't have to do this manually as latexmk can figure
 
 ## Example slides
 I already prepared many presentations using this style. Here are some examples:
+- [Zigtoberfest Talk](https://raw.githubusercontent.com/LukasPietzschmann/zigtoberfest-talk/build/talk.pdf) ([Repo](https://github.com/LukasPietzschmann/zigtoberfest-talk))
 - [Haskell's lenses](https://raw.githubusercontent.com/LukasPietzschmann/haskell-lenses/build/slides/talk.pdf) ([Repo](https://github.com/LukasPietzschmann/haskell-lenses))
 - [Hydrogen is an energy carrier](https://raw.githubusercontent.com/LukasPietzschmann/hydrogen-energy/build/talk.pdf) ([Repo](https://github.com/LukasPietzschmann/hydrogen-energy))
 - [SIMD intrinsics](https://github.com/LukasPietzschmann/SIMD-Intrinsics/files/12775327/talk.pdf) ([Repo](https://github.com/LukasPietzschmann/SIMD-Intrinsics))
