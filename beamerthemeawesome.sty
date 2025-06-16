@@ -8,9 +8,8 @@
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=awesome,prefix=awesome@}
 
-\newif\ifawesome@english@
-\DeclareVoidOption{english}{\awesome@english@true}
-\DeclareVoidOption{german}{\awesome@english@false}
+\DeclareBoolOption{english}
+\DeclareComplementaryOption{german}{english}
 
 \DeclareBoolOption{notoc}
 \DeclareBoolOption{secslide}
@@ -21,7 +20,7 @@
 
 \ProcessKeyvalOptions*
 
-\ifawesome@english@\RequirePackage[english]{babel}\else\RequirePackage[ngerman]{babel}\fi
+\ifawesome@english\RequirePackage[english]{babel}\else\RequirePackage[ngerman]{babel}\fi
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,7 +42,7 @@
 
 \usetikzlibrary{overlay-beamer-styles,decorations.markings}
 \tikzset{
-	node distance = 5mm,
+	node distance=5mm,
 	invisible/.style={opacity=0},
 	muted/.style={opacity=0.3},
 	visible on/.style={alt={#1{}{invisible}}},
@@ -82,8 +81,6 @@
 		\fi%
 	\fi%
 }
-
-\BeforeBeginEnvironment{tabular}{\def\arraystretch{1.1}}
 
 \providebool{wideframe}
 \define@key{beamerframe}{wide}[true]{
@@ -179,7 +176,9 @@
 
 \setbeamercolor{alerted text}{fg=accent}
 
+\setbeamercolor{title}{fg=black}
 \setbeamercolor{subtitle}{fg=darkgray}
+
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{framesubtitle}{fg=darkgray}
 
@@ -203,59 +202,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\setbeamerfont{title}{
-	size=\LARGE,
-	shape=\bfseries\scshape
-}
+\setbeamerfont{title}{size=\LARGE,shape=\bfseries\scshape}
+\setbeamerfont{subtitle}{size=\large,shape=\normalfont}
 
-\setbeamerfont{subtitle}{
-	size=\large,
-	shape=\normalfont
-}
+\setbeamerfont{author}{size=\normalsize,shape=\normalfont}
+\setbeamerfont{details}{size=\footnotesize,shape=\normalfont}
 
-\setbeamerfont{author}{
-	size=\normalsize,
-	shape=\normalfont
-}
+\setbeamerfont{footline}{size=\tiny,shape=\normalfont}
 
-\setbeamerfont{details}{
-	size=\footnotesize,
-	shape=\normalfont
-}
+\setbeamerfont{footnote}{size=\tiny,shape=\normalfont}
 
-\setbeamerfont{footline}{
-	size=\tiny,
-	shape=\normalfont
-}
+\setbeamerfont{frametitle}{size=\LARGE,shape=\bfseries\scshape}
 
-\setbeamerfont{footnote}{
-	size=\tiny,
-	shape=\normalfont
-}
+\setbeamerfont{framesubtitle}{size=\normalsize,shape=\normalfont}
 
-\setbeamerfont{frametitle}{
-	size=\LARGE,
-	shape=\bfseries\scshape
-}
+\setbeamerfont{block title}{size=\normalfont,shape=\strut}
+\setbeamerfont{blockdef}{size=\large,shape=\bfseries}
 
-\setbeamerfont{framesubtitle}{
-	size=\normalsize,
-	shape=\normalfont
-}
-
-\setbeamerfont{block title}{
-	size=\normalfont,
-	shape=\strut
-}
-
-\setbeamerfont{blockdef}{
-	size=\large,
-	shape=\bfseries
-}
-
-\setbeamerfont{description item}{
-	shape=\bfseries
-}
+\setbeamerfont{description item}{shape=\bfseries}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,7 +283,7 @@
 	\begin{beamercolorbox}{frametitle}%
 		\insertframetitle%
 	\end{beamercolorbox}
-	\ifx\insertframesubtitle\empty\else%
+	\ifx\usebeamercolor{subtitle}\insertframesubtitle\empty\else%
 	\begin{beamercolorbox}{framesubtitle}%
 		\ifawesome@nonumbersinframetitle\ifbool{wideframe}{\hspace{-\awesome@sidebarwidth}}{}\fi\usebeamerfont{subtitle}\insertframesubtitle%
 	\end{beamercolorbox}\fi%
@@ -485,7 +449,7 @@ segmentation style={lcr, solid, shorten >=1mm,shorten <=1mm, line width=\smile@l
 				}%
 			\fi%
 		\fi%
-	}{\ifawesome@english@ Page\else Seite\fi~\insertframenumber~/~\inserttotalframenumber}%
+	}{\ifawesome@english Page\else Seite\fi~\insertframenumber~/~\inserttotalframenumber}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -499,7 +463,7 @@ segmentation style={lcr, solid, shorten >=1mm,shorten <=1mm, line width=\smile@l
 	\setbeamertemplate{footline}{%
 		\setfooter{\insertshortauthor}%
 		{\hyperlinkdocumentstart{\insertshorttitle}}%
-		{\ifawesome@english@ Section\else Kapitel\fi~\thesection\ifx\insertsubsection\empty\else.\thesubsection\fi}%
+		{\ifawesome@english Section\else Kapitel\fi~\thesection\ifx\insertsubsection\empty\else.\thesubsection\fi}%
 	}%
 	\@nameuse{ps@navigation}%
 }
